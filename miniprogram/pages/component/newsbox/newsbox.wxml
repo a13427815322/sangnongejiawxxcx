@@ -1,0 +1,10 @@
+<view class="newsbox">
+    <view class="newscontent">
+        <view class="newstitle">1</view>
+        <view class="newswriter">
+            <view class="newstext">1</view>
+            <view class="newsdata">1</view>
+        </view>
+    </view>
+    <view class="newsimg">1</view>
+</view>

@@ -9,6 +9,7 @@ Page({
         menuRight: app.globalData.menuRight,
         menuTop: app.globalData.menuTop,
         menuHeight: app.globalData.menuHeight,
+        activeKey:0,
         placeholder:'请输入要查找的内容',
         swiperimages:['../../static/index/indexbanner.png','../../static/index/indexbanner1.png','../../static/index/indexbanner2.png'],
         tabList: [{

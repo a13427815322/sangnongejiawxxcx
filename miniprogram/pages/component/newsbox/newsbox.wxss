@@ -1,0 +1,19 @@
+/* pages/component/newsbox/newsbox.wxss */
+.newsbox{
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+}
+.newscontent{
+    flex: 2;
+}
+.newsimg{
+    flex: 1;
+}
+.newscontent .newswriter{
+    display: flex;
+}
+.newscontent .newswriter .newstext,.newscontent .newswriter .newsdata{
+    flex: 1;
+}
+

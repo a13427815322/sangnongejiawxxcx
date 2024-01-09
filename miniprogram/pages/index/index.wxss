@@ -10,3 +10,25 @@
   border-radius: 4px;
   overflow: hidden;
 }
+.siderbaritem{
+  height: 30px;
+  display: inline-block;
+  margin-left: 11px;
+}
+ .van-sidebar-item{
+  padding: 0 5px !important
+}
+.van-sidebar-item--selected{
+border-color:#24AC6B !important
+}
+.van-sidebar-item__text{
+font-size: 12px !important;
+}
+.van-sidebar{
+  width: 100% !important;
+}
+.aboutknow{
+    margin-left: 18px;
+    font-size: 18px;
+    font-weight: bold;
+}
