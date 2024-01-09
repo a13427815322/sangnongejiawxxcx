@@ -1,0 +1,29 @@
+/* pages/component/search/search.wxss */
+.searchbox{
+position: relative;
+width: 100vw;
+min-height: 40px;
+}
+.search{
+  width: 80%;
+  background-color: #f5f5f5;
+  left: 10%;
+  height: 40px;
+  border-radius: 4px;
+  padding-left: 40px;
+  line-height: 40px;
+  position: absolute;
+  }
+.searchicon{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 10%;
+  margin-left: 16px;
+  margin-top: 12px;
+  z-index: 999;
+}
+.placeholder-style {
+  color: #999999;
+  font-size: 14px;
+}

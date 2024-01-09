@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view style="height:{{navBarHeight}}px;"></view>  
+<search placeholder="{{placeholder}}"></search>
+<swiper  class="swiper" indicator-dots circular autoplay	indicator-color="#fff" 	indicator-active-color="#24AC6B">
+<swiper-item wx:for="{{swiperimages}}">
+<image src="{{item}}" class="swiperimage"></image>
+</swiper-item>
+</swiper>
+<scroll-view scroll-x="true">
+<span wx:for="{{tabList}}">{{item.name}}</span>
+
+</scroll-view>
