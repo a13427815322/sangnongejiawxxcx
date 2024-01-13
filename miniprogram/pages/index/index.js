@@ -19,8 +19,10 @@ Page({
 					id: "tab02",
 					name: '农业科技'
 				}],
+        newsdetail:[]
   },
   onLoad() {
+    const that=this
       wx.request({
         url: 'http://127.0.0.1:3002/getnews',
         method: 'POST',
@@ -30,6 +32,7 @@ Page({
         },
         success(res) {
           console.log(res)
+          that.setData({newsdetail:res.data })
         }
       })
   
