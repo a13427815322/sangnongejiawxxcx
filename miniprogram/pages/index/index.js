@@ -22,20 +22,27 @@ Page({
         newsdetail:[]
   },
   onLoad() {
+  this.getnew()
+  },
+  onChange(event){
+    this.setData({activeKey:event.detail})
+    this.getnew()
+  },
+  getnew(){
     const that=this
-      wx.request({
-        url: 'http://127.0.0.1:3002/getnews',
-        method: 'POST',
-        data: {type:1},
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success(res) {
-          console.log(res)
-          that.setData({newsdetail:res.data })
-        }
-      })
-  
-    
+    console.log(111)
+     wx.request({
+      url: 'http://127.0.0.1:3002/getnews',
+      method: 'POST',
+      data: {type:this.data.activeKey},
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        for(let index in res.data){
+          res.data[index].datetime=new Date(res.data[index].datetime).toLocaleDateString();}
+        that.setData({newsdetail:res.data })
+      }
+    })
   }
 })

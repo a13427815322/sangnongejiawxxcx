@@ -1,10 +1,10 @@
 <view class="newsbox">
     <view class="newscontent">
-        <view class="newstitle">1</view>
+        <view class="newstitle">{{news.title}}</view>
         <view class="newswriter">
-            <view class="newstext">1</view>
-            <view class="newsdata">1</view>
+            <view class="newstext">{{news.soure}}</view>
+            <view class="newsdata">{{news.datetime}}</view>
         </view>
     </view>
-    <view class="newsimg">1</view>
+    <view class="newsimg"><image src="{{news.img_url}}" mode="cover" ></image></view>
 </view>

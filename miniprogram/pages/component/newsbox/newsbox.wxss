@@ -6,9 +6,11 @@
 }
 .newscontent{
     flex: 2;
+    margin: 10px;
 }
 .newsimg{
     flex: 1;
+    margin: 15px;
 }
 .newscontent .newswriter{
     display: flex;
@@ -16,4 +18,20 @@
 .newscontent .newswriter .newstext,.newscontent .newswriter .newsdata{
     flex: 1;
 }
-
+.newsimg image{
+    width: 100px;
+    height: 60px;
+    border-radius: 4px;
+}
+.newstitle{
+    font-family: PingFang SC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display:-webkit-box; 
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    margin: 5px auto;
+}
