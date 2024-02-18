@@ -1,2 +1,29 @@
-<!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+<!-- pages/me/me.wxml -->
+<image src="../../static/me/mebackground.png" class="mebackground" />
+<view style="height:{{navBarHeight}}px"></view>
+<view class="userinformation" wx:if="{{isuserinfo}}" bind:tap="toseeting">
+    <view class="useratavar">
+        <image src="{{userInfo.headSculpture}}" class="atavar" />
+    </view>
+    <view class="usernickname">
+        <view class="nickname">{{userInfo.nickname}}</view>
+        <view class="userphone">账号：{{userInfo.username?userInfo.username:'暂无'}}</view>
+    </view>
+    <view class="usersetting">
+        <view class="settingiconbox">
+            <image src="../../static/Setting.png" class="settingicon" />
+        </view>
+        <view class="settingtext">设置</view>
+    </view>
+</view>
+<view class="userinformation" bindtap="onlogin" wx:else>
+    <view class="useratavar">
+        <image src="https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0" class="atavar" />
+    </view>
+    <view class="usernickname1">
+        <view class="nickname">
+            登录/注册
+            <image src="../../static/right.png" />
+        </view>
+    </view>
+</view>

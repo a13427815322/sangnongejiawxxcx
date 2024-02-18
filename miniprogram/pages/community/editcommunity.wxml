@@ -1,0 +1,27 @@
+<!-- pages/community/editcommunity.wxml -->
+<van-nav-bar title="发布问题" bind:click-left="onClickLeft">
+  <van-icon name='arrow-left' slot="left" />
+</van-nav-bar>
+<form bindsubmit="submitcommunity">
+  <view class="cu-form-group">
+    <textarea maxlength="-1" :disabled="modalName!=null" bindinput="textareaAInput" placeholder="来说一说你的想法吧"></textarea>
+  </view>
+  <view style="width:90%;margin:10px auto">
+    <van-uploader preview-size="27vw" file-list="{{ fileList }}" max-count="9" bind:after-read="afterRead" catch:delete="deletefile" />
+  </view>
+  <view class="loacationbox">
+    <view class="locationimg">
+      <image src="../../static/localtion.png" />
+    </view>
+    <van-field class="locationinput" model:value="{{location}}" placeholder="请输入地址" border="{{ false }}"></van-field>
+    <!-- <view class="locationimg">
+    <image src="../../static/right.png" />
+  </view> -->
+    <!-- <view class="loacationtext">请选择地址</view> -->
+  </view>
+  <view style="width:90%;margin:10px auto">
+    <van-button round type="primary" formType="{{isButtonDisabled?'':'submit'}}" size="large" disabled="{{isButtonDisabled}}">
+      发表
+    </van-button>
+  </view>
+</form>

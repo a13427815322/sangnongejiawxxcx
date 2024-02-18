@@ -1,0 +1,36 @@
+<van-nav-bar title="" bind:click-left="onClickLeft" style="position: absolute;">
+    <van-icon name='arrow-left' slot="left" />
+</van-nav-bar>
+<view class="container">
+    <view class="form-title">{{isLogin ? '登录' : '注册'}}</view>
+    <!-- 登录表单 -->
+    <view wx:if="{{isLogin}}">
+        <van-field label="账号" placeholder="请输入账号" bind:input="onAccountInput" error-message="{{loginAccountError}}" />
+        <van-field label="密码" placeholder="请输入密码" type="{{showLoginPassword ? 'text' : 'password'}}" bind:input="onPasswordInput" error-message="{{loginPasswordError}}">
+            <view slot="button" bindtap="toggleShowLoginPassword" class="eye-icon {{showLoginPassword ? 'show' : 'hide'}}"></view>
+        </van-field>
+        <view class="loginbutton">
+            <van-button type="primary" bind:tap="onLogin">登录</van-button>
+        </view>
+        <view class="switch-text" bindtap="switchToRegister">没有账号？立即注册</view>
+    </view>
+    <!-- 注册表单 -->
+    <view wx:else>
+        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+            <image class="avatar" src="{{avatarUrl}}"></image>
+        </button>
+        <van-field label="昵称" type="nickname" id="nickname" bind:blur="nicknameInput" placeholder="请输入昵称" error-message="{{nicknameError}}" />
+        <van-field label="账号" placeholder="请输入账号" bind:input="onAccountInput" error-message="{{registerAccountError}}" />
+        <van-field label="密码" placeholder="请输入密码" type="{{showRegisterPassword ? 'text' : 'password'}}" bind:input="onPasswordInput" error-message="{{registerPasswordError}}">
+            <view slot="button" bindtap="toggleShowRegisterPassword" class="eye-icon {{showRegisterPassword ? 'show' : 'hide'}}"></view>
+        </van-field>
+        <van-field label="重复密码" placeholder="请再次输入密码" type="{{showRepeatPassword ? 'text' : 'password'}}" bind:input="onRepeatPasswordInput" bind:blur="onRepeatPasswordBlur" error-message="{{repeatPasswordError}}">
+            <view slot="button" bindtap="toggleShowRepeatPassword" class="eye-icon {{showRepeatPassword ? 'show' : 'hide'}}"></view>
+        </van-field>
+        <van-field label="手机号" placeholder="请输入手机号" type="number" bind:input="onPhoneNumberInput" error-message="{{phoneNumberError}}" />
+        <view class="loginbutton">
+            <van-button type="primary" bind:tap="onRegister">注册</van-button>
+        </view>
+        <view class="switch-text" bindtap="switchToLogin">已有账号？返回登录</view>
+    </view>
+</view>

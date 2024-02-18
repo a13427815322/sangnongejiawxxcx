@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+  "van-nav-bar": "@vant/weapp/nav-bar/index",
+  "CommuityCard":"../../components/CommuityCard/CommuityCard"
+}
 }

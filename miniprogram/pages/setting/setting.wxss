@@ -1,0 +1,78 @@
+/* pages/setting/setting.wxss */
+.atavar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.settingicon {
+    width: 22px;
+    height: 22px;
+}
+
+.settingiconbox {
+    width: 22px;
+    height: 22px;
+}
+
+.userinformation {
+    display: flex;
+    position: relative;
+    padding: 10px 0;
+}
+
+.userinformation .useratavar {
+    flex: 1.5;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.van-cell {
+    align-items: center;
+    display: flex;
+}
+
+.userinformation .usernickname {
+    flex: 4;
+}
+
+.nickname image {
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+}
+
+.userinformation .usersetting {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userinformation .usernickname .nickname {
+    font-family: PingFang SC;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    color: #333;
+}
+
+.userinformation .usernickname .userphone {
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+.userinformation .usersetting .settingtext {
+    font-family: PingFang SC;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: center;
+
+}

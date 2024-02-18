@@ -1,0 +1,4 @@
+<view class="iconcontent">
+<image src="{{src}}" class="iconimg" />
+<view class="icontext">{{label}}</view>
+</view>

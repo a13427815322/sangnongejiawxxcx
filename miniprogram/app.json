@@ -4,7 +4,10 @@
    "pages/community/community",
    "pages/shop/shop",
    "pages/shopcart/shopcart",
-   "pages/me/me"
+   "pages/me/me",
+   "pages/community/editcommunity",
+   "pages/login/login",
+   "pages/setting/setting"
   ],
   "window": {
     "backgroundTextStyle": "light",

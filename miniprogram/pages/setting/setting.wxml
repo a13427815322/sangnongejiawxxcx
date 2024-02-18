@@ -1,0 +1,17 @@
+<!-- pages/setting/setting.wxml -->
+<van-nav-bar title="设置" bind:click-left="onClickLeft" lable="设置" style="width:100%">
+    <van-icon name='arrow-left' slot="left" />
+</van-nav-bar>
+<van-cell is-link use-label-slot>
+    <view class="userinformation" bind:tap="toseeting" slot='label'>
+        <view class="useratavar">
+            <image src="{{userInfo.headSculpture}}" class="atavar" />
+        </view>
+        <view class="usernickname">
+            <view class="nickname">{{userInfo.nickname}}</view>
+            <view class="userphone">账号：{{userInfo.username?userInfo.username:'暂无'}}</view>
+        </view>
+    </view>
+</van-cell>
+<van-cell title="管理收货地址" is-link />
+<van-cell title="账号安全" is-link />

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "iconbox":"../iconbox/iconbox",
+    "grid-view":"../../components/GridView/index"
+  }
+}

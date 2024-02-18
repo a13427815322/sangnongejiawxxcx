@@ -1,2 +1,12 @@
-<!--pages/community/community.wxml-->
-<text>pages/community/community.wxml</text>
+<!-- pages/community/community.wxml -->
+<van-nav-bar title="互助社区" />
+<view>
+  <!-- 使用wx:for遍历helpCommunityList -->
+  <block wx:for="{{helpCommunityList}}" wx:key="index">
+    <!-- 将每个帖子的数据传递给CommunityCard组件 -->
+    <CommuityCard communityData="{{item}}" />
+  </block>
+</view>
+<view class="commuityedit" bindtap="toeditcommunity">
+  <image src="../../images/edit.png" />
+</view>

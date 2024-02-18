@@ -1,0 +1,30 @@
+/* pages/community/editcommunity.wxss */
+.cu-form-group {
+    background: transparent;
+}
+
+Page {
+    background-color: white;
+}
+
+.loacationbox {
+    display: flex;
+    margin: 10px auto;
+    width: 90%;
+}
+
+.loacationbox .locationimg {
+    margin: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loacationbox .locationimg image {
+    width: 15px;
+    height: 18px;
+}
+
+.loacationbox .locationinput {
+    flex: 4;
+}
