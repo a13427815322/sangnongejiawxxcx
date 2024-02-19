@@ -13,5 +13,5 @@
         </view>
     </view>
 </van-cell>
-<van-cell title="管理收货地址" is-link />
+<van-cell title="管理收货地址" is-link bind:tap="toloacation" />
 <van-cell title="账号安全" is-link />

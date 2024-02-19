@@ -7,7 +7,9 @@
    "pages/me/me",
    "pages/community/editcommunity",
    "pages/login/login",
-   "pages/setting/setting"
+   "pages/setting/setting",
+   "pages/setting/location",
+   "pages/setting/locationEdit"
   ],
   "window": {
     "backgroundTextStyle": "light",

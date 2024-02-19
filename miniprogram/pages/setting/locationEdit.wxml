@@ -1,0 +1,20 @@
+<!-- addressEdit/addressEdit.wxml -->
+
+<view>
+  <van-cell-group>
+    <van-cell title="收货人" value="">
+      <input placeholder="请输入收货人姓名" />
+    </van-cell>
+    <van-cell title="联系电话" value="">
+      <input type="number" placeholder="请输入联系电话" />
+    </van-cell>
+    <van-cell title="详细地址" value="">
+      <textarea placeholder="请输入详细地址"></textarea>
+    </van-cell>
+    <van-cell title="设置默认地址">
+      <van-switch checked="{{isDefault}}" bind:change="onSwitchChange" />
+    </van-cell>
+  </van-cell-group>
+
+  <van-button type="primary" bind:click="saveAddress">保存</van-button>
+</view>

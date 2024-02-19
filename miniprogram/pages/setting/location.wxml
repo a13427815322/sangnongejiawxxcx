@@ -1,0 +1,21 @@
+<!-- addressList/addressList.wxml -->
+<van-nav-bar title="地址管理" bind:click-left="onClickLeft" lable="设置" style="width:100%">
+    <van-icon name='arrow-left' slot="left" />
+</van-nav-bar>
+<view>
+  <van-cell-group>
+    <van-cell
+      title="收货地址1"
+      value="张三 188****8888"
+      is-link
+      bind:click="goToEditAddress"
+    />
+    <van-cell
+      title="收货地址2"
+      value="李四 177****7777"
+      is-link
+      bind:click="goToEditAddress"
+    />
+    <!-- 其他地址列表根据需要添加 -->
+  </van-cell-group>
+</view>
