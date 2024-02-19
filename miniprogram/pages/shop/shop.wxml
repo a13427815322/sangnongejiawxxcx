@@ -1,2 +1,12 @@
-<!--pages/shop/shop.wxml-->
-<text>pages/shop/shop.wxml</text>
+<van-nav-bar >
+</van-nav-bar>
+<search placeholder="{{placeholder}}"></search>
+<view>
+<view>
+<view>农业用品</view>
+<view>种子</view>
+<view>肥料</view>
+<view>农机具</view>
+</view>
+<view></view>
+</view>

@@ -23,8 +23,8 @@
         "miniprogramNpmDistDir": "./miniprogram/"
       }
     ],
-    "es6": false,
-    "enhance": false
+    "es6": true,
+    "enhance": true
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
