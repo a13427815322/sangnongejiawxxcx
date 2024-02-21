@@ -1,1 +1,59 @@
 /* pages/setting/location.wxss */
+.locationbox{
+    display: flex
+}
+.locationbox .locationicon{
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.locationbox .locationicon .cicletag{
+width:40px;
+height: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+background-color: #97dfbc;
+color: rgb(121, 173, 42);
+font-size: 16px;
+}
+.locationbox .locationinfo{
+    flex:4;
+    line-height:20px;
+}
+.locationbox .locationinfo .namebox{
+  display: flex;
+}
+.locationbox .locationinfo .namebox .phone{
+    margin: 0 5px;
+    font-size: 10px
+}
+.van-tag{
+    font-size: 10px !important;
+}
+.locationbox .locationinfo .namebox .name{
+    font-size: 13px;
+    font-weight: 700;
+}
+.locationbox .locationinfo .adress{
+    font-size: 10px;
+}
+.locationbox .locationedit{
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.locationbox .locationedit image{
+    width: 16px;
+    height: 16px;
+}
+.management{
+width: 90%;
+height: 35px!important;
+}.addlocation{
+   width: 90%;
+   height: 35px!important;
+}

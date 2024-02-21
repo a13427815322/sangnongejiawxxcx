@@ -1,1 +1,8 @@
 /* pages/setting/locationEdit.wxss */
+.van-cell__title{
+    flex:none!important;
+    width:100px;
+}
+textarea{
+    width: 100%;
+}

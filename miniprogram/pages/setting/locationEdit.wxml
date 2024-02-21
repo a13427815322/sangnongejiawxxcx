@@ -1,5 +1,7 @@
 <!-- addressEdit/addressEdit.wxml -->
-
+<van-nav-bar title="添加收货地址" bind:click-left="onClickLeft" lable="设置" style="width:100%">
+    <van-icon name='arrow-left' slot="left" />
+</van-nav-bar>
 <view>
   <van-cell-group>
     <van-cell title="收货人" value="">
@@ -8,6 +10,15 @@
     <van-cell title="联系电话" value="">
       <input type="number" placeholder="请输入联系电话" />
     </van-cell>
+    <van-cell title="选择地区" >
+        <van-field
+        value="{{ regionValue }}"
+        is-link
+        readonly
+        placeholder="请选择所在地区"
+        bind:tap="onRegionTap"
+      />
+    </van-cell>
     <van-cell title="详细地址" value="">
       <textarea placeholder="请输入详细地址"></textarea>
     </van-cell>
@@ -15,6 +26,13 @@
       <van-switch checked="{{isDefault}}" bind:change="onSwitchChange" />
     </van-cell>
   </van-cell-group>
+<van-field></van-field>
+  <van-popup show="{{ showRegionPopup }}" round position="bottom">
+    <van-area area-list="{{ areaList }}"
+    bind:confirm="onConfirm"
+    bind:cancel="{{ showRegionPopup }} = false"
+     />
+  </van-popup>
 
   <van-button type="primary" bind:click="saveAddress">保存</van-button>
 </view>
