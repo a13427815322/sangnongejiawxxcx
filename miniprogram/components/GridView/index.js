@@ -5,7 +5,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    images:{
+    images: {
       type: Array,
       value: [],
     }
@@ -15,9 +15,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    size:{
-      width:0,
-      height:0,
+    size: {
+      width: 0,
+      height: 0,
     },
     windowWidth: app.globalData.systemInfo1.windowWidth
   },
@@ -26,14 +26,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    loadImage(e){
-      console.log(e);
+    loadImage(e) {
       this.setData({
-        ['size']:{
-          width:  e.detail.width,
+        ['size']: {
+          width: e.detail.width,
           height: e.detail.height,
-        } 
-        
+        }
+
       })
     },
     /**

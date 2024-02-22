@@ -37,7 +37,8 @@
     margin: 0 12px 12px 0;
 }
 
-.userinformation .username,.commuityconent{
+.userinformation .username,
+.commuityconent {
     flex: 1;
     font-family: PingFang SC;
     font-weight: 400;
@@ -62,10 +63,15 @@
     width: 100%;
     margin: 12px;
 }
+
 .image-box {
     position: relative;
     display: block;
     overflow: hidden;
     margin: 2vw;
-    box-sizing:border-box;
-  }
+    box-sizing: border-box;
+}
+
+.upvote {
+    margin-right: 6px;
+}

@@ -1,13 +1,17 @@
-.iconcontent .iconimg{
-    width: 24px;
-    height: 24px;
+.iconcontent .iconimg {
+    width: 16px;
+    height: 16px;
 }
-.iconcontent{
+
+.iconcontent {
     display: flex;
+    align-items: center;
 }
-.iconcontent .icontext{
-font-family: PingFang SC;
-font-size: 12px;
-font-weight: 400;
-line-height: 28px;
+
+.iconcontent .icontext {
+    font-family: PingFang SC;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 28px;
+    margin-left: 6px;
 }

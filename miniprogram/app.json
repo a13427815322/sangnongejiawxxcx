@@ -1,15 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-   "pages/community/community",
-   "pages/shop/shop",
-   "pages/shopcart/shopcart",
-   "pages/me/me",
-   "pages/community/editcommunity",
-   "pages/login/login",
-   "pages/setting/setting",
-   "pages/setting/location",
-   "pages/setting/locationEdit"
+    "pages/community/community",
+    "pages/communitydetail/communitydetail",
+    "pages/shop/shop",
+    "pages/shopcart/shopcart",
+    "pages/me/me",
+    "pages/community/editcommunity",
+    "pages/login/login",
+    "pages/setting/setting",
+    "pages/setting/location",
+    "pages/setting/locationEdit"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -19,37 +20,38 @@
     "navigationStyle": "custom"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "./static/Vectored.png",
-      "selectedIconPath": "./static/Vector.png"
-    },
-    {
-      "pagePath": "pages/community/community",
-      "text": "互助社区",
-      "iconPath": "./static/Community.png",
-      "selectedIconPath": "./static/Communityfill.png"
-    },
-    {
-      "pagePath": "pages/shop/shop",
-      "text": "农资商城",
-      "iconPath": "./static/shop.png",
-      "selectedIconPath": "./static/Shoped.png"
-    },
-    {
-      "pagePath": "pages/shopcart/shopcart",
-      "text": "购物车",
-      "iconPath": "./static/ShoppingTrolley.png",
-      "selectedIconPath": "./static/ShoppingTrolleyfill.png"
-    },
-    {
-      "pagePath": "pages/me/me",
-      "text": "我的",
-      "iconPath": "./static/Personal.png",
-      "selectedIconPath": "./static/Personalfill.png"
-    }
-  ]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./static/Vectored.png",
+        "selectedIconPath": "./static/Vector.png"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "互助社区",
+        "iconPath": "./static/Community.png",
+        "selectedIconPath": "./static/Communityfill.png"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "农资商城",
+        "iconPath": "./static/shop.png",
+        "selectedIconPath": "./static/Shoped.png"
+      },
+      {
+        "pagePath": "pages/shopcart/shopcart",
+        "text": "购物车",
+        "iconPath": "./static/ShoppingTrolley.png",
+        "selectedIconPath": "./static/ShoppingTrolleyfill.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "./static/Personal.png",
+        "selectedIconPath": "./static/Personalfill.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -19,6 +19,7 @@
   padding: 0 5px !important
 }
 .van-sidebar-item--selected{
+background: transparent!important;
 border-color:#24AC6B !important
 }
 .van-sidebar-item__text{

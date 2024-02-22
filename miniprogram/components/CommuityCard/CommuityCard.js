@@ -108,19 +108,26 @@ Component({
    * 组件的初始数据
    */
   data: {
-    updatedata: ''
+    updatedata: '',
   },
   /**
    * 组件的方法列表
    */
   methods: {
-
+    tocomment() {
+      this.triggerEvent('comment', this.data.communityData.id)
+    }
   },
   lifetimes: {
     attached: function () {
-      this.setData({
-        updatedata: moment(this.data.communityData.creattime).fromNow()
-      })
+      // console.log("文件链接:", this.data.communityData);
+      if (this.data.communityData) {
+        this.setData({
+          updatedata: moment(this.data.communityData.creattime).fromNow(),
+          communityDataimg: this.data.communityData.fileurls
+        });
+      }
     }
   }
+
 })

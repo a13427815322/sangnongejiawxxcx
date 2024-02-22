@@ -1,39 +1,44 @@
-// pages/community/community.ts
+// pages/communitydetail/communitydetail.ts
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    helpCommunityList: [],
+    helpCommunityList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
-
-  },
-  getHelpCommunityData: function () {
+  onLoad(options) {
     wx.request({
-      url: 'http://localhost:3002/getHelpCommunity',
-      method: 'GET',
+      url: 'http://localhost:3002/getCommunityDetail',
+      method: 'POST',
+      data: {
+        id: options.id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
       success: (res) => {
-        const helpCommunityList = res.data;
-
-        // 将数据按照 creattime 降序排列
-        helpCommunityList.sort((a, b) => {
-          return new Date(b.creattime) - new Date(a.creattime);
+        let helpCommunityList = res.data;
+        helpCommunityList.forEach(element => {
+          element.fileurls = JSON.parse(element.fileurls)
         });
-
+        // 将数据按照 creattime 降序排列
         this.setData({
           helpCommunityList: helpCommunityList,
         });
+
       },
       fail: (error) => {
         console.error('获取 helpcommunity 数据失败：', error);
       },
     });
+  },
+  onClickLeft() {
+    wx.navigateBack({ delta: 1 });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -46,7 +51,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.getHelpCommunityData();
+
   },
 
   /**
@@ -82,35 +87,5 @@ Page({
    */
   onShareAppMessage() {
 
-  },
-  toeditcommunity() {
-    const _id = wx.getStorageSync('_id')
-    if (_id) {
-      wx.navigateTo({ url: 'editcommunity' })
-    } else {
-      wx.showToast({
-        title: '请先登录',
-        icon: 'info',
-        duration: 500,
-
-      })
-      setTimeout(() => {
-        wx.navigateTo({
-          url: '../login/login'
-        })
-      }, 500);
-
-
-
-
-    }
-
-  },
-  tocomment(e) {
-    console.log(e.detail)
-    wx.navigateTo({
-      url: '../communitydetail/communitydetail?id=' + e.detail
-    })
   }
-
 })

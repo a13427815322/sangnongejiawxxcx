@@ -6,7 +6,7 @@
 <image src="{{item}}" class="swiperimage"></image>
 </swiper-item>
 </swiper>
-<text class=".aboutknow">相关资讯</text>
+<text class="aboutknow">相关资讯</text>
 <scroll-view scroll-x="true" style="margin-top:10px">
 <van-sidebar  active-key="{{activeKey}}" bind:change="onChange" class="siderbaritem"  >
 <van-sidebar-item  wx:for="{{tabList}}" title="{{item.name}}"class="siderbaritem"  />

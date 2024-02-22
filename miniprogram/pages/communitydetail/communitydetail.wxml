@@ -1,0 +1,8 @@
+<!-- pages/communitydetail/communitydetail.wxml -->
+<van-nav-bar title="社区正文" bind:click-left="onClickLeft">
+    <van-icon name='arrow-left' slot="left" />
+</van-nav-bar>
+<block wx:for="{{helpCommunityList}}" wx:key="index">
+    <!-- 将每个帖子的数据传递给CommunityCard组件 -->
+    <CommuityCard communityData="{{item}}" bind:comment="tocomment" />
+</block>
