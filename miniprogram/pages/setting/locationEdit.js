@@ -52,9 +52,8 @@ Page({
         });
       },
     onSwitchChange(event) {
-        console.log(event)
       this.setData({
-        isDefault: event.detail.value,
+        isDefault: event.detail,
       });
     },
   
@@ -65,8 +64,14 @@ Page({
       wx.navigateBack({
         delta: 1,
       });
-    },    onClickLeft() {
+    },   
+     onClickLeft() {
         wx.navigateBack({ delta: 1 });
       },
+      oncancel(){
+          this.setData({
+            showRegionPopup:false
+          })
+      }
   });
   

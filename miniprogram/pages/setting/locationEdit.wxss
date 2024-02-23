@@ -6,3 +6,9 @@
 textarea{
     width: 100%;
 }
+.van-cell:after {
+    border: none!important;
+    }
+.checklocation .van-cell{
+    padding: 0!important;
+}
