@@ -16,7 +16,7 @@ Page({
     const that = this;
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
     wx.uploadFile({
-      url: 'http://127.0.0.1:3002/uploadcommunity',
+      url: 'http://localhost:3002/uploadcommunity',
       filePath: file.url,
       name: 'file',
       formData: { user: 'test' },

@@ -17,10 +17,10 @@ Page({
   onClickLeft() {
     wx.navigateBack({ delta: 1 });
   },
-  toloacation(){
-      wx.navigateTo({
-        url: './location',
-      })
+  toloacation() {
+    wx.navigateTo({
+      url: './location',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

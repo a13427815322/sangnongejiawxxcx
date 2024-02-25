@@ -19,7 +19,7 @@
         </view>
         <view class="interaction">
             <iconbox class="upvote" src="../../static/Like.png" label="点赞" />
-            <iconbox class="comment" src="../../static/Comment.png" label="评论" bind:tap="tocomment" />
+            <iconbox wx:if="{{!isdetail}}" class="comment" src="../../static/Comment.png" label="评论" bind:tap="tocomment" />
         </view>
     </view>
 </view>

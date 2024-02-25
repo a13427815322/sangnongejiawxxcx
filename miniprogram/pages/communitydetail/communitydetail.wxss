@@ -1,1 +1,191 @@
 /* pages/communitydetail/communitydetail.wxss */
+.fixedcomment {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 0;
+    border-top: 1px #ebedf0 solid;
+}
+
+.fixedcomment .commentfiled {
+    flex: 3.5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.commentinput {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+.submitcomment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.fixedcomment .comment {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avtarimgbox {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avtarimg {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.commuitycard {
+    box-sizing: border-box;
+    padding: 0 12px;
+    background-color: #fff;
+}
+
+.informationbar {
+    display: flex;
+}
+
+.informationbar .adressinformation {
+    flex: 2.5;
+}
+
+.informationbar .interaction {
+    flex: 1;
+    display: flex;
+}
+
+.informationbar .interaction .upvote {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.informationbar .interaction .comment {
+    flex: 1;
+}
+
+.userinformation {
+    display: flex;
+}
+
+.userinformation .avatar image,
+.userinformation .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 12px 12px 0;
+}
+
+.userinformation .username {
+    flex: 1;
+    font-family: PingFang SC;
+    font-weight: 400;
+    line-height: 15px;
+    font-size: 10px;
+    text-align: left;
+}
+
+.commuityconent {
+    flex: 1;
+    font-family: PingFang SC;
+    font-weight: 400;
+    line-height: 15px;
+    font-size: 14px;
+    text-align: left;
+    margin-left: 30px;
+}
+
+
+.userinformation .username .usernickname {
+    font-size: 14px;
+    color: #333333;
+
+}
+
+.userinformation .username .updatedate {
+    color: #666666;
+    font-size: 12px;
+
+}
+
+.commuityconent {
+    width: calc(100% - 50px);
+    margin: 10px 42px;
+}
+
+.image-box {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 2vw;
+    box-sizing: border-box;
+}
+
+.upvote {
+    margin-right: 6px;
+}
+
+.commentbox {
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.allcomment {
+    font-family: PingFang SC;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0px;
+    padding: 10px 20px;
+}
+
+.commentchildren {
+    width: calc(100% - 50px);
+    margin: 10px 42px;
+    background-color: rgba(202, 210, 216, 0.12);
+    border-radius: 4px;
+    padding: 6px;
+}
+
+.commentchildrenbox {
+    padding: 5px;
+    word-wrap: break-word;
+}
+
+.childrennickname {
+    color: #333333;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.lookallcomment {
+    padding: 6px;
+    font-size: 12px;
+    color: #24AC6B;
+}
+
+.van-cell {
+    background-color: #f5f5f5 !important;
+}
+
+.temchildren {
+    margin: 10px;
+    color: #a7a5a5;
+    font-size: 12px;
+}

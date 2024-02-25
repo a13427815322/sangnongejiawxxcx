@@ -4,5 +4,64 @@
 </van-nav-bar>
 <block wx:for="{{helpCommunityList}}" wx:key="index">
     <!-- 将每个帖子的数据传递给CommunityCard组件 -->
-    <CommuityCard communityData="{{item}}" bind:comment="tocomment" />
+    <CommuityCard communityData="{{item}}" bind:comment="tocomment" isdetail="{{true}}" />
 </block>
+<view class="commentbox">
+    <view class="allcomment">全部评论</view>
+    <block wx:for="{{commentlist}}">
+        <view class="commuitycard">
+            <view class="userinformation">
+                <view class="avatar">
+                    <image src="{{item.userinfo.headSculpture}}" />
+                </view>
+                <view class="username">
+                    <view class="usernickname">{{item.userinfo.nickname}}</view>
+                    <view class="updatedata">{{item.createtime}}</view>
+                </view>
+                <iconbox class="upvote" src="../../static/Like.png" label="点赞" />
+            </view>
+            <view class="commuityconent" bind:tap="tapchildrencomment" data-item="{{item}}">
+                {{item.comment}}
+            </view>
+            <view style="clear:both"></view>
+            <view wx:if="{{item.children.length}}" class="commentchildren">
+                <view wx:for="{{item.children}}" wx:if="{{index < 3}}" class="commentchildrenbox">
+                    <text class="childrennickname">{{item.userinfo.nickname}}</text>
+                    : {{item.comment}}
+                </view>
+                <view wx:if="{{item.children.length > 3}}" class="lookallcomment">
+                    查看更多{{item.children.length}}条回复
+                </view>
+            </view>
+            <van-divider />
+        </view>
+    </block>
+</view>
+<view style="height:70px"></view>
+<form bindsubmit="submitcomment">
+    <view class="fixedcomment" hover-stop-propagation="{{true}}">
+        <van-field wx:if="{{!istextarea&&!ischildren}}" bind:tap="tapfiled" custom-class="commentinput" placeholder="{{comment?'[草稿待发送]':'我来聊两句'}}" border readonly class="commentfiled">
+            <view slot="left-icon">
+                <view class="avtarimgbox">
+                    <image class="avtarimg" src="{{userInfo.headSculpture}}" />
+                </view>
+            </view>
+        </van-field>
+        <iconbox wx:if="{{!istextarea&&!ischildren}}" class="comment" src="../../static/Comment.png" label="评论" bind:tap="tocomment" />
+        <van-field wx:if="{{istextarea}}" bind:blur="blurcomment" autosize="{{autosize}}" auto-focus="{{true}}" type="textarea" value="{{comment}}" bind:input="changefiled" custom-class="commentinput" placeholder="我来聊两句" border class="commentfiled"></van-field>
+        <van-button wx:if="{{istextarea}}" formType="{{!comment?'':'submit'}}" color="#24AC6B" round size="mini" disabled="{{!comment}}" class="submitcomment">
+            发表
+        </van-button>
+        <view style="flex:1" wx:if="{{ischildren}}">
+            <view class="temchildren">
+                回复 {{temcomment.userinfo.nickname}} : {{temcomment.comment}}
+            </view>
+            <view style="display:flex;">
+                <van-field bind:blur="blurchildrencomment" autosize="{{autosize}}" auto-focus="{{true}}" type="textarea" value="{{temcomment.temcomment}}" bind:input="changechildrenfiled" custom-class="commentinput" placeholder="我来聊两句" border class="commentfiled"></van-field>
+                <van-button formType="{{!temcomment.temcomment?'':'submit'}}" color="#24AC6B" round size="mini" disabled="{{!temcomment.temcomment}}" class="submitcomment">
+                    发表
+                </van-button>
+            </view>
+        </view>
+    </view>
+</form>

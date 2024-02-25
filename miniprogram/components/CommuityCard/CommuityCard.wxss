@@ -19,6 +19,8 @@
 
 .informationbar .interaction .upvote {
     flex: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .informationbar .interaction .comment {

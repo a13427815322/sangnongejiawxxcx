@@ -2,6 +2,10 @@
   "usingComponents": {
     "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-icon": "@vant/weapp/icon/index",
-    "CommuityCard": "../../components/CommuityCard/CommuityCard"
+    "CommuityCard": "../../components/CommuityCard/CommuityCard",
+    "van-field": "@vant/weapp/field/index",
+    "iconbox": "../../components/iconbox/iconbox",
+    "van-button": "@vant/weapp/button/index",
+    "van-divider": "@vant/weapp/divider/index"
   }
 }

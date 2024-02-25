@@ -103,6 +103,10 @@ Component({
       type: Object,
       value: {},
     },
+    isdetail: {
+      type: Boolean,
+      value: false,
+    },
   },
   /**
    * 组件的初始数据
