@@ -67,6 +67,7 @@
 .informationbar .interaction {
     flex: 1;
     display: flex;
+
 }
 
 .informationbar .interaction .upvote {
@@ -188,4 +189,65 @@
     margin: 10px;
     color: #a7a5a5;
     font-size: 12px;
+}
+
+.popupbox {
+    border-radius: 10px;
+    height: 90vh;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.ansertitle {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 16px;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+}
+
+.closepopup {
+    position: absolute;
+    margin-right: 10px;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+
+}
+
+.stickybox {
+    position: sticky;
+    top: 0;
+    height: 40px;
+    z-index: 999;
+    background-color: #fff;
+}
+
+.sbider {
+    clear: both;
+    height: 5px;
+    position: relative;
+    width: 100vw;
+    left: -10px;
+    background-color: #f5f5f5;
+}
+
+.countcomment {
+    font-family: PingFang SC;
+    font-weight: 400;
+    line-height: 15px;
+    font-size: 14px;
+    text-align: left;
+    margin: 10px 5px;
+}
+
+.noanser {
+    font-family: PingFang SC;
+    font-weight: 400;
+    line-height: 15px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 30px;
+    color: #a7a5a5;
 }

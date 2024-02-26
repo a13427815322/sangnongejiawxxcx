@@ -1,4 +1,5 @@
 <!-- pages/communitydetail/communitydetail.wxml -->
+<page-meta page-style="overflow: {{commentshow ? 'hidden' : 'visible'}}" />
 <van-nav-bar title="社区正文" bind:click-left="onClickLeft">
     <van-icon name='arrow-left' slot="left" />
 </van-nav-bar>
@@ -14,7 +15,7 @@
                 <view class="avatar">
                     <image src="{{item.userinfo.headSculpture}}" />
                 </view>
-                <view class="username">
+                <view class="username" bind:tap="tocommentdetail" data-item="{{item}}">
                     <view class="usernickname">{{item.userinfo.nickname}}</view>
                     <view class="updatedata">{{item.createtime}}</view>
                 </view>
@@ -24,7 +25,7 @@
                 {{item.comment}}
             </view>
             <view style="clear:both"></view>
-            <view wx:if="{{item.children.length}}" class="commentchildren">
+            <view wx:if="{{item.children.length}}" class="commentchildren" bind:tap="tocommentdetail" data-item="{{item}}">
                 <view wx:for="{{item.children}}" wx:if="{{index < 3}}" class="commentchildrenbox">
                     <text class="childrennickname">{{item.userinfo.nickname}}</text>
                     : {{item.comment}}
@@ -47,7 +48,7 @@
                 </view>
             </view>
         </van-field>
-        <iconbox wx:if="{{!istextarea&&!ischildren}}" class="comment" src="../../static/Comment.png" label="评论" bind:tap="tocomment" />
+        <iconbox wx:if="{{!istextarea&&!ischildren}}" class="comment" src="../../static/Comment.png" label="评论" bind:tap="tapfiled" />
         <van-field wx:if="{{istextarea}}" bind:blur="blurcomment" autosize="{{autosize}}" auto-focus="{{true}}" type="textarea" value="{{comment}}" bind:input="changefiled" custom-class="commentinput" placeholder="我来聊两句" border class="commentfiled"></van-field>
         <van-button wx:if="{{istextarea}}" formType="{{!comment?'':'submit'}}" color="#24AC6B" round size="mini" disabled="{{!comment}}" class="submitcomment">
             发表
@@ -65,3 +66,78 @@
         </view>
     </view>
 </form>
+<van-popup show="{{ commentshow }}" position="bottom" custom-class="popupbox" bind:close="closepopup">
+    <view class="stickybox">
+        <van-icon name="cross" class="closepopup" bind:tap="closepopup" />
+        <view class="ansertitle">回复</view>
+    </view>
+    <view class="commuitycard">
+        <view class="userinformation">
+            <view class="avatar">
+                <image src="{{temcomment.userinfo.headSculpture}}" />
+            </view>
+            <view class="username" bind:tap="tapansercomment" data-item="{{temcomment}}">
+                <view class="usernickname">{{temcomment.userinfo.nickname}}</view>
+                <view class="updatedata">{{temcomment.createtime}}</view>
+            </view>
+            <iconbox class="upvote" src="../../static/Like.png" label="点赞" />
+        </view>
+        <view class="commuityconent" bind:tap="tapansercomment" data-item="{{temcomment}}">
+            {{temcomment.comment}}
+        </view>
+        <view class="sbider"></view>
+        <view wx:if="{{temcomment.children.length}}" style="margin-top:10px">
+            <view class="countcomment">{{temcomment.children.length}}条回复</view>
+            <view wx:for="{{temcomment.children}}">
+                <view class="userinformation">
+                    <view class="avatar">
+                        <image src="{{item.userinfo.headSculpture}}" />
+                    </view>
+                    <view class="username" bind:tap="tapansercomment" data-item="{{item}}">
+                        <view class="usernickname">{{item.userinfo.nickname}}</view>
+                        <view class="updatedata">{{item.createtime}}</view>
+                    </view>
+                </view>
+                <view class="commuityconent" bind:tap="tapansercomment" data-item="{{item}}">
+                    {{item.comment}}
+                </view>
+                <view class="informationbar">
+                    <view class="adressinformation"></view>
+                    <view class="interaction">
+                        <iconbox class="upvote" src="../../static/Like.png" label="点赞" />
+                        <iconbox class="comment" src="../../static/Comment.png" label="评论" bind:tap="tapansercomment" data-item="{{item}}" />
+                    </view>
+                </view>
+                <van-divider />
+            </view>
+        </view>
+        <view wx:else>
+            <view class="countcomment">{{temcomment.children.length}}条回复</view>
+            <view class="noanser">还没有回复，快来回复吧~</view>
+        </view>
+    </view>
+    <view style="height:50px"></view>
+    <form bindsubmit="submitcomment">
+        <view class="fixedcomment" hover-stop-propagation="{{true}}">
+            <van-field wx:if="{{!iscomment}}" bind:tap="tapcommentanser" custom-class="commentinput" placeholder="{{comment?'[草稿待发送]':'我来聊两句'}}" border readonly class="commentfiled">
+                <view slot="left-icon">
+                    <view class="avtarimgbox">
+                        <image class="avtarimg" src="{{userInfo.headSculpture}}" />
+                    </view>
+                </view>
+            </van-field>
+            <iconbox wx:if="{{!iscomment}}" class="comment" src="../../static/Comment.png" label="评论" bind:tap="tocomment" />
+            <view style="flex:1" wx:if="{{iscomment}}">
+                <view class="temchildren">
+                    回复 {{temtemcomment.userinfo.nickname}} : {{temtemcomment.comment}}
+                </view>
+                <view style="display:flex;">
+                    <van-field bind:blur="bluransercomment" autosize="{{autosize}}" auto-focus="{{true}}" type="textarea" value="{{temtemcomment.temcomment}}" bind:input="changecomentfiled" custom-class="commentinput" placeholder="我来聊两句" border class="commentfiled"></van-field>
+                    <van-button formType="{{!temtemcomment.temcomment?'':'submit'}}" color="#24AC6B" round size="mini" disabled="{{!temtemcomment.temcomment}}" class="submitcomment">
+                        发表
+                    </van-button>
+                </view>
+            </view>
+        </view>
+    </form>
+</van-popup>

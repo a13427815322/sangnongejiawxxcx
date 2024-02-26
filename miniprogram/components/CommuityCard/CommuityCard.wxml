@@ -3,12 +3,12 @@
         <view class="avatar">
             <image src="{{communityData.headSculpture}}" />
         </view>
-        <view class="username">
+        <view class="username" bind:tap="tocomment">
             <view class="usernickname">{{communityData.nickname}}</view>
             <view class="updatedata">{{updatedata}}</view>
         </view>
     </view>
-    <view class="commuityconent">{{communityData.title}}</view>
+    <view class="commuityconent" bind:tap="tocomment">{{communityData.title}}</view>
     <view class="image-box">
         <grid-view images="{{communityDataimg}}" mode='center'></grid-view>
     </view>

@@ -6,6 +6,7 @@
     "van-field": "@vant/weapp/field/index",
     "iconbox": "../../components/iconbox/iconbox",
     "van-button": "@vant/weapp/button/index",
-    "van-divider": "@vant/weapp/divider/index"
+    "van-divider": "@vant/weapp/divider/index",
+    "van-popup": "@vant/weapp/popup/index"
   }
 }

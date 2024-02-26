@@ -10,9 +10,12 @@ Page({
     userInfo: {},
     istextarea: false,
     ischildren: false,
+    iscomment: false,
     autosize: { maxHeight: 150, minHeight: 100 },
     commentlist: [],
     temcomment: {},
+    temtemcomment: {},
+    commentshow: false,
   },
 
   /**
@@ -98,6 +101,30 @@ Page({
     })
 
   },
+  tapcommentanser() {
+    this.setData({
+      iscomment: true,
+      temtemcomment: this.data.temcomment,
+    })
+  },
+  tapansercomment(e) {
+    console.log(e)
+    this.setData({
+      iscomment: true,
+      temtemcomment: e.currentTarget.dataset.item,
+    })
+  },
+  bluransercomment() {
+    this.setData({
+      iscomment: false,
+    })
+  },
+  closepopup() {
+    this.setData({
+      commentshow: false
+    })
+  },
+
   blurcomment() {
     this.setData({
       istextarea: false
@@ -111,12 +138,27 @@ Page({
   tapchildrencomment(e) {
     this.setData({
       ischildren: true,
-      temcomment: e.target.dataset.item,
+      temcomment: e.currentTarget.dataset.item,
+    })
+  },
+  tocommentdetail(e) {
+    console.log(e)
+    this.setData({
+      commentshow: true,
+      temcomment: e.currentTarget.dataset.item,
     })
   },
   submitcomment() {
     let tem
-    if (this.data.temcomment.id) {
+    if (this.data.temtemcomment.id) {
+      tem = {
+        comment: this.data.temtemcomment.pid ? `回复 ${this.data.temtemcomment.userinfo.nickname} : ${this.data.temtemcomment.temcomment}` : this.data.temtemcomment.temcomment,
+        userInfo: JSON.stringify(this.data.userInfo),
+        id: this.data.id,
+        pid: this.data.temtemcomment.pid ? this.data.temtemcomment.pid : this.data.temtemcomment.id
+      }
+    }
+    else if (this.data.temcomment.id) {
       tem = {
         comment: this.data.temcomment.temcomment,
         userInfo: JSON.stringify(this.data.userInfo),
@@ -132,7 +174,9 @@ Page({
     }
 
     this.setData({
-      comment: ''
+      comment: '',
+      temcomment: {},
+      temtemcomment: {},
     })
     console.log(tem)
     wx.request({
@@ -142,8 +186,11 @@ Page({
       header: {
         'content-type': 'application/x-www-form-urlencoded',
       },
-      success: (res) => {
-        this.getcomment()
+      success: (response) => {
+        this.setData({
+          commentshow: false
+        })
+        this.getcomunitydetail()
       },
       fail: (error) => { }
     })
@@ -177,11 +224,17 @@ Page({
     })
   },
   changechildrenfiled(e) {
-    console.log(e)
     let temcomment = this.data.temcomment
     temcomment.temcomment = e.detail
     this.setData({
       temcomment
+    })
+  },
+  changecomentfiled(e) {
+    let temtemcomment = this.data.temtemcomment
+    temtemcomment.temcomment = e.detail
+    this.setData({
+      temtemcomment
     })
   },
   /**
