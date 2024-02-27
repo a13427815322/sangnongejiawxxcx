@@ -1,66 +1,80 @@
 /* pages/setting/location.wxss */
-.locationbox{
+.locationbox {
     display: flex
 }
-.locationbox .locationicon{
-    flex:1;
+
+.locationbox .locationicon {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.locationbox .locationicon .cicletag{
-width:40px;
-height: 40px;
-display: flex;
-justify-content: center;
-align-items: center;
-border-radius: 50%;
-background-color: #97dfbc;
-color: rgb(121, 173, 42);
-font-size: 16px;
+
+.locationbox .locationicon .cicletag {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #97dfbc;
+    color: rgb(121, 173, 42);
+    font-size: 16px;
 }
-.locationbox .locationinfo{
-    flex:4;
-    line-height:20px;
+
+.locationbox .locationinfo {
+    flex: 4;
+    line-height: 20px;
 }
-.locationbox .locationinfo .namebox{
-  display: flex;
+
+.locationbox .locationinfo .namebox {
+    display: flex;
 }
-.locationbox .locationinfo .namebox .phone{
+
+.locationbox .locationinfo .namebox .phone {
     margin: 0 5px;
     font-size: 10px
 }
-.van-tag{
+
+.van-tag {
     font-size: 10px !important;
 }
-.locationbox .locationinfo .namebox .name{
+
+.locationbox .locationinfo .namebox .name {
     font-size: 13px;
     font-weight: 700;
 }
-.locationbox .locationinfo .adress{
+
+.locationbox .locationinfo .adress {
     font-size: 10px;
 }
-.locationbox .locationedit{
-    flex:1;
+
+.locationbox .locationedit {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.locationbox .locationedit image{
+
+.locationbox .locationedit image {
     width: 16px;
     height: 16px;
 }
-.management{
-width: 90%;
-height: 35px!important;
-}
-.addlocation{
-   width: 90%;
-   height: 35px!important;
-}
-.van-icon-success{
-    font-size: 0.7rem!important;
+
+.management {
+    width: 90%;
+    height: 35px !important;
 }
 
+.addlocation {
+    width: 90%;
+    height: 35px !important;
+}
 
-    
+.van-icon-success {
+    font-size: 0.7rem !important;
+}
+
+.van-cell:after {
+    border: none !important;
+}

@@ -74,6 +74,12 @@ Page({
         let helpCommunityList = res.data;
         helpCommunityList.forEach(element => {
           element.fileurls = JSON.parse(element.fileurls)
+          element.likelist = JSON.parse(element.likelist)
+          if (element.likelist.includes(wx.getStorageSync('_id'))) {
+            element.islike = true
+          } else {
+            element.islike = false
+          }
         });
         // 将数据按照 creattime 降序排列
         this.setData({
@@ -175,7 +181,6 @@ Page({
 
     this.setData({
       comment: '',
-      temcomment: {},
       temtemcomment: {},
     })
     console.log(tem)
@@ -187,9 +192,9 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
       },
       success: (response) => {
-        this.setData({
-          commentshow: false
-        })
+        // this.setData({
+        //   commentshow: false
+        // })
         this.getcomunitydetail()
       },
       fail: (error) => { }
@@ -209,18 +214,78 @@ Page({
         res.data.forEach((item) => {
           item.userinfo = JSON.parse(item.userinfo)
           item.createtime = moment(item.createtime).format('MM-DD')
+          item.likelist = JSON.parse(item.likelist)
+          if (item.likelist.includes(wx.getStorageSync('_id'))) {
+            item.islike = true
+          } else {
+            item.islike = false
+          }
           if (item.children.length) {
             item.children.forEach((element) => {
               element.createtime = moment(element.createtime).format('MM-DD')
               element.userinfo = JSON.parse(element.userinfo)
+              element.likelist = JSON.parse(element.likelist)
+              if (element.likelist.includes(wx.getStorageSync('_id'))) {
+                element.islike = true
+              } else {
+                element.islike = false
+              }
             })
           }
         })
         this.setData({
           commentlist: res.data
         })
+        if (this.data.temcomment.id) {
+          let temcomment = this.data.commentlist.forEach((item) => {
+            if (item.id == this.data.temcomment.id) {
+              this.setData({
+                temcomment: item
+              })
+            }
+          })
+        }
       },
       fail: (error) => { }
+    })
+  },
+  upvotecommunity(e) {
+    console.log(e.detail)
+    const id = e.detail
+    const _id = wx.getStorageSync('_id')
+    wx.request({
+      url: 'http://localhost:3002/upvotecommunity',
+      method: 'POST',
+      data: { id, _id },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      success: (res) => {
+        this.getcomunitydetail()
+      },
+      fail: (error) => {
+        console.error('获取 helpcommunity 数据失败：', error);
+      }
+
+    })
+  },
+  toupvote(e) {
+    const id = e.currentTarget.dataset.id
+    const _id = wx.getStorageSync('_id')
+    wx.request({
+      url: 'http://localhost:3002/upvotecomment',
+      method: 'POST',
+      data: { id, _id },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      success: (res) => {
+        this.getcomunitydetail()
+      },
+      fail: (error) => {
+        console.error('获取 helpcommunity 数据失败：', error);
+      }
+
     })
   },
   changechildrenfiled(e) {

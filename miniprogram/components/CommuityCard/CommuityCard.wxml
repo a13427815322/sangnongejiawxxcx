@@ -15,10 +15,10 @@
     <view style="clear:both"></view>
     <view class="informationbar">
         <view class="adressinformation">
-            <iconbox src="../../static/localtion.png" label="{{communityData.adress}}" />
+            <iconbox src="../../static/localtion.png" label="{{communityData.adress}}" wx:if="{{communityData.adress.length}}" />
         </view>
         <view class="interaction">
-            <iconbox class="upvote" src="../../static/Like.png" label="点赞" />
+            <iconbox class="upvote" src="{{communityData.islike?'../../static/Likefill.png':'../../static/Like.png'}}" label="{{communityData.likelist.length}}" bind:tap="toupvote" color="{{communityData.islike?'#24AC6B':'#333333'}}" />
             <iconbox wx:if="{{!isdetail}}" class="comment" src="../../static/Comment.png" label="评论" bind:tap="tocomment" />
         </view>
     </view>

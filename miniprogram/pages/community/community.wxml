@@ -4,7 +4,7 @@
   <!-- 使用wx:for遍历helpCommunityList -->
   <block wx:for="{{helpCommunityList}}" wx:key="index">
     <!-- 将每个帖子的数据传递给CommunityCard组件 -->
-    <CommuityCard communityData="{{item}}" bind:comment="tocomment" />
+    <CommuityCard communityData="{{item}}" bind:comment="tocomment" bind:upvote="upvotecommunity" />
   </block>
 </view>
 <view class="commuityedit" bindtap="toeditcommunity">

@@ -20,12 +20,18 @@ Page({
       method: 'GET',
       success: (res) => {
         const helpCommunityList = res.data;
-
+        console.log(helpCommunityList)
         // 将数据按照 creattime 降序排列
         helpCommunityList.sort((a, b) => {
           return new Date(b.creattime) - new Date(a.creattime);
         });
-
+        helpCommunityList.forEach(element => {
+          if (element.likelist.includes(wx.getStorageSync('_id'))) {
+            element.islike = true
+          } else {
+            element.islike = false
+          }
+        });
         this.setData({
           helpCommunityList: helpCommunityList,
         });
@@ -35,6 +41,26 @@ Page({
       },
     });
   },
+  upvotecommunity(e) {
+    const id = e.detail
+    const _id = wx.getStorageSync('_id')
+    wx.request({
+      url: 'http://localhost:3002/upvotecommunity',
+      method: 'POST',
+      data: { id, _id },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      success: (res) => {
+        this.getHelpCommunityData()
+      },
+      fail: (error) => {
+        console.error('获取 helpcommunity 数据失败：', error);
+      }
+
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

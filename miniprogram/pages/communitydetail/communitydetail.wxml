@@ -5,7 +5,7 @@
 </van-nav-bar>
 <block wx:for="{{helpCommunityList}}" wx:key="index">
     <!-- 将每个帖子的数据传递给CommunityCard组件 -->
-    <CommuityCard communityData="{{item}}" bind:comment="tocomment" isdetail="{{true}}" />
+    <CommuityCard communityData="{{item}}" bind:comment="tocomment" isdetail="{{true}}" bind:upvote="upvotecommunity" />
 </block>
 <view class="commentbox">
     <view class="allcomment">全部评论</view>
@@ -19,7 +19,7 @@
                     <view class="usernickname">{{item.userinfo.nickname}}</view>
                     <view class="updatedata">{{item.createtime}}</view>
                 </view>
-                <iconbox class="upvote" src="../../static/Like.png" label="点赞" />
+                <iconbox class="upvote" src="{{item.islike?'../../static/Likefill.png':'../../static/Like.png'}}" label="{{item.likelist.length}}" bind:tap="toupvote" data-id="{{item.id}}" color="{{item.islike?'#24AC6B':'#333333'}}" />
             </view>
             <view class="commuityconent" bind:tap="tapchildrencomment" data-item="{{item}}">
                 {{item.comment}}
@@ -80,7 +80,7 @@
                 <view class="usernickname">{{temcomment.userinfo.nickname}}</view>
                 <view class="updatedata">{{temcomment.createtime}}</view>
             </view>
-            <iconbox class="upvote" src="../../static/Like.png" label="点赞" />
+            <iconbox class="upvote" src="{{temcomment.islike?'../../static/Likefill.png':'../../static/Like.png'}}" label="{{temcomment.likelist.length}}" bind:tap="toupvote" data-id="{{temcomment.id}}" color="{{temcomment.islike?'#24AC6B':'#333333'}}" />
         </view>
         <view class="commuityconent" bind:tap="tapansercomment" data-item="{{temcomment}}">
             {{temcomment.comment}}
@@ -104,7 +104,7 @@
                 <view class="informationbar">
                     <view class="adressinformation"></view>
                     <view class="interaction">
-                        <iconbox class="upvote" src="../../static/Like.png" label="点赞" />
+                        <iconbox class="upvote" src="{{item.islike?'../../static/Likefill.png':'../../static/Like.png'}}" label="{{item.likelist.length}}" bind:tap="toupvote" data-id="{{item.id}}" color="{{item.islike?'#24AC6B':'#333333'}}" />
                         <iconbox class="comment" src="../../static/Comment.png" label="评论" bind:tap="tapansercomment" data-item="{{item}}" />
                     </view>
                 </view>

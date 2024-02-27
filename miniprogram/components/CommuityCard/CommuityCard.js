@@ -120,6 +120,9 @@ Component({
   methods: {
     tocomment() {
       this.triggerEvent('comment', this.data.communityData.id)
+    },
+    toupvote() {
+      this.triggerEvent('upvote', this.data.communityData.id)
     }
   },
   lifetimes: {
