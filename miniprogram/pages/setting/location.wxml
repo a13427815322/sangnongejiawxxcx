@@ -2,28 +2,43 @@
 <van-nav-bar title="管理收货地址" bind:click-left="onClickLeft" lable="设置" style="width:100%">
     <van-icon name='arrow-left' slot="left" />
 </van-nav-bar>
-<view>
-  <van-cell-group>
-    <van-cell
-        use-label-slot
-      bind:click="goToEditAddress"
-    >
-    <view slot="label" class="locationbox">
-    <view class="locationicon"><view class="cicletag">许</view></view>
-    <view class="locationinfo">
-    <view class="namebox">
-    <view class="name">许国柱</view>
-    <view class="phone">13427815322</view>
-    <van-tag color="#24AC6B" plain>默认</van-tag>
+<view style="background-color: white;">
+    <van-cell-group>
+        <van-radio-group value="{{Defaultadress}}" bind:change="changeDefaultadress">
+            <block wx:for="{{4}}">
+                <van-cell use-label-slot>
+                    <view slot="label" class="locationbox">
+                        <view class="locationicon">
+                            <view class="cicletag">许</view>
+                        </view>
+                        <view class="locationinfo">
+                            <view class="namebox">
+                                <view class="name">许国柱</view>
+                                <view class="phone">13427815322</view>
+                                <van-tag color="#24AC6B" plain>默认</van-tag>
+                            </view>
+                            <view class="adress">巴拉巴拉地址</view>
+                        </view>
+                        <view class="locationedit" bind:tap="goToEditAddress">
+                            <image src="../../static/修改.png"></image>
+                        </view>
+                    </view>
+                </van-cell>
+                <view style="display: flex;justify-content: space-between;margin:10px" wx:if="{{ismanager}}">
+                    <van-radio name="{{index+1}}">
+                        设置默认地址
+                    </van-radio>
+                    <view style="color: #24AC6B;display: flex;justify-content: center;align-items:center;">
+                        <van-icon name="delete-o" size="20" color="#24AC6B" />
+                        <view>删除</view>
+                    </view>
+                </view>
+            </block>
+
+        </van-radio-group>
+    </van-cell-group>
+    <view style="display: flex; position: fixed;bottom: 0;width: 100%;height: 50px;justify-content: center;align-items: center;">
+        <van-button round plain color='#70cea1' custom-class="management" bind:tap="tapismanager" style="flex: 1;display: flex;justify-content: center;align-items: center;">{{ismanager?'退出':''}}管理</van-button>
+        <van-button custom-class="addlocation" icon="plus" round color="linear-gradient(to right,#70cea1,#24AC6B)" style="flex: 2;display: flex;justify-content: center;align-items: center;" bind:tap="goToEditAddress">添加收货地址</van-button>
     </view>
-    <view class="adress">巴拉巴拉地址</view>
-    </view>
-    <view class="locationedit"><image src="../../static/修改.png"></image></view>
-    </view>
-    </van-cell>
-  </van-cell-group>
-  <view style="display: flex; position: fixed;bottom: 0;width: 100%;height: 50px;justify-content: center;align-items: center;">   
-  <van-button round plain color='#70cea1'custom-class="management" style="flex: 1;display: flex;justify-content: center;align-items: center;" >管理</van-button>
-  <van-button custom-class="addlocation" icon="plus" round color="linear-gradient(to right,#70cea1,#24AC6B)" style="flex: 3;display: flex;justify-content: center;align-items: center;" >添加收货地址</van-button>
-  </view>
 </view>

@@ -53,9 +53,13 @@ font-size: 16px;
 .management{
 width: 90%;
 height: 35px!important;
-}.addlocation{
+}
+.addlocation{
    width: 90%;
    height: 35px!important;
+}
+.van-icon-success{
+    font-size: 0.7rem!important;
 }
 
 
