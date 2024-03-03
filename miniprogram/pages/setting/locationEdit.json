@@ -9,6 +9,7 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-field": "@vant/weapp/field/index",
     "van-area": "@vant/weapp/area/index",
-    "van-switch": "@vant/weapp/switch/index"
+    "van-switch": "@vant/weapp/switch/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   }
 }

@@ -1,6 +1,12 @@
 {
   "usingComponents": {
     "search": "../component/search/search",
-    "van-nav-bar": "@vant/weapp/nav-bar/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-stepper": "@vant/weapp/stepper/index"
   }
 }

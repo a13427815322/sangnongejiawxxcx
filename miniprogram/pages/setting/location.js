@@ -1,27 +1,112 @@
 // addressList/addressList.js
-
+import Dialog from '@vant/weapp/dialog/dialog';
 Page({
-    data: {
-    Defaultadress: 1,
-    ismanager:false,
+  data: {
+    Defaultadress: null,
+    ismanager: false,
+    adresslist: []
   },
-    goToEditAddress() {
+  onShow() {
+    this.getaddress()
+  },
+  getaddress() {
+    const _id = wx.getStorageSync('_id')
+    wx.request({
+      url: 'http://localhost:3002/getuseradress',
+      method: 'POST',
+      data: { _id },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      success: (res) => {
+        res.data.forEach(element => {
+          element.isdefault = JSON.parse(element.isdefault)
+          if (element.isdefault) {
+            this.setData({
+              Defaultadress: element.id
+            })
+          }
+          if (element.sjr.length > 2) {
+            element.firstname = element.sjr[0]
+          } else {
+            element.firstname = element.sjr
+          }
+        });
+        this.setData({ adresslist: res.data })
+      },
+      fail: (error) => {
+        console.error('获取 adress 数据失败：', error);
+      }
+
+    })
+  },
+  goToEditAddress(e) {
+    const { id } = e.currentTarget.dataset
+    if (id) {
+      wx.navigateTo({
+        url: './locationEdit?id=' + id,
+      });
+    } else {
       wx.navigateTo({
         url: './locationEdit',
       });
-    },
-    changeDefaultadress(event){
-        this.setData({
-            Defaultadress: event.detail
-          });
-    },
-    onClickLeft() {
-        wx.navigateBack({ delta: 1 });
+    }
+
+  },
+  changeDefaultadress(event) {
+    this.setData({
+      Defaultadress: event.detail
+    });
+    const _id = wx.getStorageSync('_id')
+    wx.request({
+      url: 'http://localhost:3002/setdefaultadress',
+      method: 'POST',
+      data: { id: event.detail, _id },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
       },
-      tapismanager(){
-          this.setData({
-            ismanager:!this.data.ismanager
-          })
+      success: (res) => {
+        this.getaddress()
       },
-  });
-  
+      fail: (error) => {
+        console.error('获取 adress 数据失败：', error);
+      }
+
+    })
+  },
+  deladress(e) {
+    console.log(e.currentTarget.dataset.id)
+    Dialog.confirm({
+      message: '确定要删除该地址吗',
+    })
+      .then(() => {
+        wx.request({
+          url: 'http://localhost:3002/deladress',
+          method: 'POST',
+          data: { id: e.currentTarget.dataset.id },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+          },
+          success: (res) => {
+            this.getaddress()
+          },
+          fail: (error) => {
+            console.error('获取 adress 数据失败：', error);
+          }
+
+        })
+        // on confirm
+      })
+      .catch(() => {
+        // on cancel
+      });
+  },
+  onClickLeft() {
+    wx.navigateBack({ delta: 1 });
+  },
+  tapismanager() {
+    this.setData({
+      ismanager: !this.data.ismanager
+    })
+  },
+});

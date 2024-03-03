@@ -1,12 +1,84 @@
-<van-nav-bar >
-</van-nav-bar>
-<search placeholder="{{placeholder}}"></search>
-<view>
-<view>
-<view>农业用品</view>
-<view>种子</view>
-<view>肥料</view>
-<view>农机具</view>
+<view style="height:{{navBarHeight}}px" class="navbar"></view>
+<search placeholder="{{placeholder}}" style="padding:10px 0px;background-color:#fff;position: fixed;z-index: 1;width: 100%;top:{{navBarHeight}}px;" class="searbox"></search>
+<view class="shopbox">
+    <scroll-view scroll-y style="width: 33.3%;position: fixed;top:{{navBarHeight+62}}px;left: 0;">
+        <view wx:for="{{propertylist}}" class="{{activeIndex==item.id?'propertylist propertyactive':'propertylist'}}" bind:tap="setActive" data-id="{{item.id}}" data-name="{{item.name}}">
+            {{item.name}}
+        </view>
+    </scroll-view>
+    <view class="shopdetail" style="top:{{navBarHeight+62 }}px;">
+        <scroll-view bindscroll="scroll" scroll-y scroll-into-view="{{toView}}" style="height:{{windowHeight-62-navBarHeight}}px">
+            <view wx:for="{{spulist}}">
+                <view wx:if="{{item.isfirst}}" class="propertyname" id="{{'v'+item.propertyid}}">
+                    {{propertyobj[item.propertyid]}}
+                </view>
+                <view class="spulist">
+                    <view class="spuimg">
+                        <image src="{{item.imgurl}}" class="spuimgurl" />
+                    </view>
+                    <view class="spuinformation">
+                        <view class="spuname">{{item.spuname}}</view>
+                        <view class="spuselledcount">已售：{{item.selledcount}}</view>
+                        <view class="spudeepprice">￥{{item.deepprice}} 起</view>
+                    </view>
+                    <view class="shopcartandbuy">
+                        <view class="shopcartbox">
+                            <van-button size="mini" round color="#24AC6B" bind:tap="choseshop" data-id="{{item.id}}">
+                                选择规格
+                            </van-button>
+                        </view>
+                    </view>
+                </view>
+                <van-divider />
+            </view>
+        </scroll-view>
+    </view>
 </view>
-<view></view>
-</view>
+<van-popup show="{{ tosku }}" round bind:close="closedetail" closeable position="bottom" custom-style="height: 70%">
+    <scroll-view scroll-y="{{true}}">
+        <view style="display:flex">
+            <image src="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" class="skudetailimg" catchtap="openImage" data-url="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" />
+            <view wx:if="{{skudetailprice}}" class="skuprice">
+                <text class="money">￥</text>
+                {{skudetailprice}}
+            </view>
+            <view wx:elif="{{pricespace.length==1}}" class="skuprice">
+                <text class="money">￥</text>
+                {{pricespace[0]}}
+            </view>
+            <view wx:elif="{{pricespace[0]==pricespace[1]}}" class="skuprice">
+                <text class="money">￥</text>
+                {{pricespace[0]}}
+            </view>
+            <view wx:elif="{{pricespace[1]}}" class="skuprice">
+                <text class="money">￥</text>
+                {{pricespace[0]}} -
+                <text class="money">￥</text>
+                {{pricespace[1]}}
+            </view>
+        </view>
+        <view wx:for="{{saleattrvaluelist}}">
+            <view class="saleattrname">{{item.saleattrname}}</view>
+            <view class="button-row">
+                <van-button custom-class="saleattrbutton" wx:for="{{item.saleattrvaluelist}}" wx:for-item="saleattrvalue" bind:tap="handleButtonClick" data-value="{{saleattrvalue}}" data-index="{{item}}" type="{{selectedValue[item.id]==saleattrvalue? 'primary' : 'default'}}">
+                    {{saleattrvalue}}
+                </van-button>
+            </view>
+        </view>
+        <view class="countbox">
+            <view class="skucount">数量</view>
+            <view class="skustepper">
+                <van-stepper value="{{quantity}}" max="{{99}}" bind:change="handleStepperChange" />
+            </view>
+        </view>
+        <view style="height:60px"></view>
+    </scroll-view>
+    <view class="toshop">
+        <van-button class="toshopcartbutton" type="primary" custom-class="toshopbutton" round plain>
+            加入购物车
+        </van-button>
+        <van-button class="tobuycartbutton" type="primary" custom-class="toshopbutton" round>
+            立即购买
+        </van-button>
+    </view>
+</van-popup>

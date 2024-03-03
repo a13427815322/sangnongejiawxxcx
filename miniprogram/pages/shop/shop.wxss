@@ -1,1 +1,195 @@
 /* pages/shop/shop.wxss */
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+    width: 100%;
+}
+
+.spuimgurl {
+    width: 68px;
+    height: 68px;
+    box-shadow: 4px 4px 10px#0000000D;
+
+}
+
+.shopdetail {
+    width: 71%;
+    position: relative;
+    left: 29%;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.propertylist {
+    width: 108px;
+    height: 44px;
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 44px;
+    letter-spacing: 0px;
+    text-align: center;
+}
+
+.propertyactive {
+    background: #24AC6B1A;
+    color: #24AC6B;
+}
+
+.spulist {
+    display: flex;
+}
+
+.spuimg {
+    flex: 1;
+}
+
+.spuinformation {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.spuname {
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: left;
+}
+
+.spuselledcount {
+    font-family: PingFang SC;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: left;
+}
+
+.spudeepprice {
+    font-family: PingFang SC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+}
+
+.shopcartandbuy {
+    flex: 1;
+    position: relative;
+}
+
+.shopcartimg {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+}
+
+.shopcartbox {
+    display: flex;
+    position: absolute;
+    bottom: 20rpx;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.spuselledcount {
+    font-family: PingFang SC;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.propertyname {
+    margin: 10px 0;
+    color: #a09f9f;
+}
+
+.skudetailimg {
+    width: 60px;
+    height: 60px;
+    margin: 20px;
+    box-shadow: 4px 4px 4px 0px #0000000D;
+}
+
+.saleattrname {
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: left;
+    margin: 16px;
+}
+
+.toshop {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 5;
+}
+
+.toshopcartbutton {
+    flex: 1;
+}
+
+.tobuycartbutton {
+    flex: 1;
+}
+
+.toshopbutton {
+    width: 90%;
+    margin: 5%;
+}
+
+.skuprice {
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #24AC6B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.money {
+    line-height: 30px;
+    font-size: 10px;
+}
+
+.button-row {
+    margin-left: 16px;
+}
+
+.saleattrbutton {
+    margin-left: 16px;
+    margin-bottom: 16px;
+}
+
+.countbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skucount {
+    margin-left: 16px;
+}
+
+.skustepper {
+    margin-right: 16px;
+}
+
+.button-row .van-button--default {
+    background-color: #f5f5f5 !important;
+}

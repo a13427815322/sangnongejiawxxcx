@@ -16,3 +16,21 @@ textarea {
 .checklocation .van-cell {
     padding: 0 !important;
 }
+
+.van-cell__title {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.sumbitbox {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+}
+
+.submitbutton {
+    flex: 1;
+    padding: 10px;
+}

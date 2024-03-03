@@ -1,39 +1,35 @@
 <!-- addressEdit/addressEdit.wxml -->
 <van-nav-bar title="添加收货地址" bind:click-left="onClickLeft" lable="设置" style="width:100%">
-    <van-icon name='arrow-left' slot="left" />
+  <van-icon name='arrow-left' slot="left" />
 </van-nav-bar>
 <view>
   <van-cell-group>
-    <van-cell title="收货人" value="">
-      <input placeholder="请输入收货人姓名" />
+    <van-cell title="收货人">
+      <van-field error-message-align="right" input-align="right" placeholder="请输入收货人姓名" value="{{fromdata.sjr}}" bind:input="setformdata" data-type="sjr" error-message="{{errfromdata.sjr}}" />
     </van-cell>
     <van-cell title="联系电话" value="">
-      <input type="number" placeholder="请输入联系电话" />
+      <van-field error-message-align="right" input-align="right" type="number" placeholder="请输入联系电话" value="{{fromdata.phone}}" bind:input="setformdata" data-type="phone" error-message="{{errfromdata.phone}}" />
     </van-cell>
     <van-cell title="选择地区" custom-class="checklocation">
-        <van-field
-        input-align="right"
-        value="{{ regionValue }}"
-        is-link
-        readonly
-        placeholder="请选择所在地区"
-        bind:tap="onRegionTap"
-      />
+      <van-field error-message-align="right" input-align="right" value="{{ fromdata.addressspace }}" is-link readonly placeholder="请选择所在地区" bind:tap="onRegionTap" error-message="{{errfromdata.addressspace}}" />
     </van-cell>
-    <van-cell title="详细地址" value="">
-      <textarea placeholder="请输入详细地址"></textarea>
+    <van-cell title="详细地址">
+      <van-field error-message-align="right" input-align="right" placeholder="请输入详细地址" type="textarea" autosize="{{autosize}}" value="{{ fromdata.useraddress}}" bind:input="setformdata" data-type="useraddress" error-message="{{errfromdata.useraddress}}"></van-field>
     </van-cell>
     <van-cell title="设置默认地址">
-      <van-switch checked="{{isDefault}}" bind:change="onSwitchChange" size="20" active-color="#24AC6B" />
+      <van-switch checked="{{fromdata.isdefault}}" bind:change="onSwitchChange" size="20" active-color="#24AC6B" />
     </van-cell>
   </van-cell-group>
-<van-field></van-field>
   <van-popup show="{{ showRegionPopup }}" round position="bottom">
-    <van-area area-list="{{ areaList }}"
-    bind:confirm="onConfirm"
-    bind:cancel="oncancel"
-     />
+    <van-area area-list="{{ areaList }}" bind:confirm="onConfirm" bind:cancel="oncancel" />
   </van-popup>
-
-  <van-button type="primary" bind:click="saveAddress">保存</van-button>
+  <view class="sumbitbox">
+    <van-button type="primary" round size="large" class="submitbutton" bind:click="saveAddress">
+      保存
+    </van-button>
+    <van-button bind:click="deladress" type="warning" round size="large" class="submitbutton" wx:if="{{id}}">
+      删除
+    </van-button>
+  </view>
 </view>
+<van-dialog id="van-dialog" />
