@@ -1,4 +1,34 @@
-/* pages/shop/shop.wxss */
+/* pages/shop/shopdetail.wxss */
+.swiper-image {
+    width: 100%;
+    height: 240px;
+}
+
+swiper {
+    height: 240px;
+}
+
+.lefticon {
+    position: fixed;
+    width: 8px;
+    height: 10px;
+    left: 16px;
+    top: 0
+}
+
+.skuprice {
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #24AC6B;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -118,6 +148,14 @@
     box-shadow: 4px 4px 4px 0px #0000000D;
 }
 
+.skudetail {
+    overflow: hidden;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    height: calc(100vh - 250px)
+}
+
 .saleattrname {
     font-family: PingFang SC;
     font-size: 15px;
@@ -147,19 +185,6 @@
 .toshopbutton {
     width: 90%;
     margin: 5%;
-}
-
-.skuprice {
-    font-family: PingFang SC;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 21px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #24AC6B;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .money {
@@ -227,6 +252,56 @@
 .sjrname view {
     margin-right: 5px;
     margin-bottom: 5px;
+}
+
+.spunametitle {
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: left;
+    margin: 16px;
+    color: #333;
+}
+
+.skupricebox {
+    margin-left: 16px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.sellcount {
+    font-family: PingFang SC;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 3px;
+}
+
+.shouhuobox {
+    display: flex;
+    align-items: center;
+}
+
+.shouhuoicon {
+    width: 24px;
+    height: 24px;
+}
+
+.shouhuoadreess {
+    margin-left: 5px;
+    font-family: PingFang SC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    color: #333;
+}
+
+.comdatabox {
+    margin: 16px;
 }
 
 .van-cell {

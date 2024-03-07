@@ -37,6 +37,36 @@ Page({
     const _id = wx.getStorageSync('_id')
     if (_id) {
       wx.request({
+        url: 'http://localhost:3002/getshopcartcount',
+        method: 'POST',
+        data: { _id },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        success: (res) => {
+          if (res.data.shopcartcount) {
+            wx.showTabBarRedDot({
+              index: 3,
+            });
+            wx.setTabBarBadge({
+              index: 3,
+              text: res.data.shopcartcount > 99 ? '99+' : `${res.data.shopcartcount}`
+            });
+          } else {
+            wx.hideTabBarRedDot({
+              index: 3,
+            });
+            wx.removeTabBarBadge({
+              index: 3,
+            });
+          }
+
+        },
+        fail: (error) => {
+
+        },
+      });
+      wx.request({
         url: 'http://localhost:3002/getuserinfo',
         method: 'POST',
         data: {
