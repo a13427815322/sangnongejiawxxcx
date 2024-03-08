@@ -1,2 +1,38 @@
-<!--pages/shopcart/shopcart.wxml-->
-<text>pages/shopcart/shopcart.wxml</text>
+<!-- pages/shopcart/shopcart.wxml -->
+<van-nav-bar></van-nav-bar>
+<view>
+    <van-checkbox-group value="{{ result }}" bind:change="oncheckshop">
+        <block wx:for="{{shopcart}}">
+            <van-swipe-cell right-width="{{ 65 }}">
+                <van-checkbox name="{{item.id}}" custom-class="shopcartcheck">
+                    <view class="shopcartcheckbox">
+                        <image src="{{item.skuimage}}" />
+                        <view class="shopcartinfo">
+                            <view class="skuname">{{item.skuname}}</view>
+                            <view class="skusaleattrvalueList">
+                                <view class="saleattrname" wx:for="{{item.skusaleattrvalueList}}">
+                                    {{item.saleattrname}}
+                                </view>
+                            </view>
+                            <view class="shopcaertpricebox">
+                                <view class="shopcartprice">￥{{item.price}}</view>
+                                <view class="shopcartcount" wx:if="{{!item.iscount}}" catch:tap="tostepper" data-id='{{item.id}}'>
+                                    x {{item.count}}
+                                </view>
+                                <van-stepper value="{{item.count}}" catch:tap="to" wx:else max="{{99}}" bind:change="changeshopcartcount" data-id='{{item.id}}'></van-stepper>
+                            </view>
+                        </view>
+                    </view>
+                </van-checkbox>
+                <view slot="right" class="van-swipe-cell__right" bind:tap="deleteshopcart" data-id="{{item.id}}">
+                    删除
+                </view>
+            </van-swipe-cell>
+        </block>
+    </van-checkbox-group>
+</view>
+<view style="height:50px"></view>
+<van-submit-bar price="{{ totalprice }}" button-text="去结算" bind:submit="tocreatedingdan" button-type="primary" disabled="{{!result.length}}">
+    <van-checkbox value="{{allchecked}}" bind:change="tocheckall">全选</van-checkbox>
+</van-submit-bar>
+<van-dialog id="van-dialog"></van-dialog>

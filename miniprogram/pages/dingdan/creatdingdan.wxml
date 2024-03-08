@@ -1,0 +1,31 @@
+<!-- pages/dingdan/creatdingdan.wxml -->
+<van-nav-bar title="订单确定" left-arrow bind:click-left="onClickLeft"></van-nav-bar>
+<view class="locationcellbox">
+    <van-cell is-link use-label-slot bind:tap="tochoseadress">
+        <view slot="label" class="checklocation">
+            <view class="locationicon">
+                <image src="../../static/localtion.png" />
+            </view>
+            <view class="locationbox">
+                <view class="sjrname">
+                    <view>{{location.sjr}}</view>
+                    <view>{{location.useraddress}}</view>
+                </view>
+                <view class="postage">邮费：包邮</view>
+            </view>
+        </view>
+    </van-cell>
+</view>
+<view class="shopcartbox">
+    <view wx:for="{{shopcartlist}}" class="shopcartlist">
+        <image src="{{item.skuimage}}" />
+        <view class="skuname">{{item.skuname}}</view>
+        <view class="pricebox">
+            <view class="price">￥{{item.price}}</view>
+            <view class="count">X {{item.count}}</view>
+        </view>
+    </view>
+    <view class="totalprice">总计：￥{{totalprice}}</view>
+</view>
+<van-submit-bar price="{{ totalprice * 100}}" button-text="提交订单" bind:submit="tocreatedingdan" button-type="primary"></van-submit-bar>
+<van-dialog id="van-dialog" />

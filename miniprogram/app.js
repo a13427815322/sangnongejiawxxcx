@@ -25,16 +25,41 @@ App({
     that.globalData.menuTop = menuButtonInfo.top;
     that.globalData.menuHeight = menuButtonInfo.height;
     // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-    // 登录
-    wx.login({
-      success: res => {
-        console.log(res.code)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      },
-    })
+    const _id = wx.getStorageSync('_id')
+    if (_id) {
+      wx.request({
+        url: 'http://localhost:3002/getshopcartcount',
+        method: 'POST',
+        data: { _id },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        success: (res) => {
+          if (res.data.shopcartcount) {
+            wx.showTabBarRedDot({
+              index: 3,
+            });
+            wx.setTabBarBadge({
+              index: 3,
+              text: res.data.shopcartcount > 99 ? '99+' : `${res.data.shopcartcount}`
+            });
+          } else {
+            wx.hideTabBarRedDot({
+              index: 3,
+            });
+            wx.removeTabBarBadge({
+              index: 3,
+            });
+          }
 
+        },
+        fail: (error) => {
+
+        },
+      });
+    }
   },
+  onShow() {
+
+  }
 })

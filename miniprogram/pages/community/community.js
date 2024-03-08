@@ -44,21 +44,36 @@ Page({
   upvotecommunity(e) {
     const id = e.detail
     const _id = wx.getStorageSync('_id')
-    wx.request({
-      url: 'http://localhost:3002/upvotecommunity',
-      method: 'POST',
-      data: { id, _id },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-      success: (res) => {
-        this.getHelpCommunityData()
-      },
-      fail: (error) => {
-        console.error('获取 helpcommunity 数据失败：', error);
-      }
+    if (_id) {
+      wx.request({
+        url: 'http://localhost:3002/upvotecommunity',
+        method: 'POST',
+        data: { id, _id },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        success: (res) => {
+          this.getHelpCommunityData()
+        },
+        fail: (error) => {
+          console.error('获取 helpcommunity 数据失败：', error);
+        }
 
-    })
+      })
+    } else {
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none',
+        duration: 500,
+
+      })
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '../login/login'
+        })
+      }, 500);
+    }
+
   },
 
   /**
@@ -116,7 +131,7 @@ Page({
     } else {
       wx.showToast({
         title: '请先登录',
-        icon: 'info',
+        icon: 'none',
         duration: 500,
 
       })
@@ -134,9 +149,24 @@ Page({
   },
   tocomment(e) {
     console.log(e.detail)
-    wx.navigateTo({
-      url: '../communitydetail/communitydetail?id=' + e.detail
-    })
+    const _id = wx.getStorageSync('_id')
+    if (_id) {
+      wx.navigateTo({
+        url: '../communitydetail/communitydetail?id=' + e.detail
+      })
+    } else {
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none',
+        duration: 500,
+
+      })
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '../login/login'
+        })
+      }, 500);
+    }
   }
 
 })

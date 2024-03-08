@@ -30,7 +30,9 @@ Page({
     this.uploadAvatar(e.detail.avatarUrl);
   },
   onClickLeft() {
-    wx.navigateBack({ delta: 1 });
+    wx.switchTab(
+      { url: '../index/index' }
+    )
   },
   uploadAvatar(tempFilePath) {
     wx.uploadFile({

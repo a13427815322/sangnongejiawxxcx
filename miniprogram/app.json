@@ -4,13 +4,16 @@
     "pages/community/community",
     "pages/communitydetail/communitydetail",
     "pages/shop/shop",
+    "pages/shop/shopdetail",
     "pages/shopcart/shopcart",
     "pages/me/me",
     "pages/community/editcommunity",
     "pages/login/login",
     "pages/setting/setting",
     "pages/setting/location",
-    "pages/setting/locationEdit"
+    "pages/setting/locationEdit",
+    "pages/dingdan/creatdingdan",
+    "pages/dingdan/dingdandetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

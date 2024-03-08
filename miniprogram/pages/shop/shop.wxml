@@ -13,10 +13,10 @@
                     {{propertyobj[item.propertyid]}}
                 </view>
                 <view class="spulist">
-                    <view class="spuimg">
+                    <view class="spuimg" bind:tap="tospudetail" data-id="{{item.id}}">
                         <image src="{{item.imgurl}}" class="spuimgurl" />
                     </view>
-                    <view class="spuinformation">
+                    <view class="spuinformation" bind:tap="tospudetail" data-id="{{item.id}}">
                         <view class="spuname">{{item.spuname}}</view>
                         <view class="spuselledcount">已售：{{item.selledcount}}</view>
                         <view class="spudeepprice">￥{{item.deepprice}} 起</view>
@@ -57,6 +57,20 @@
                 {{pricespace[1]}}
             </view>
         </view>
+        <van-cell is-link use-label-slot bind:tap="tochoseadress">
+            <view slot="label" class="checklocation">
+                <view class="locationicon">
+                    <image src="../../static/localtion.png" />
+                </view>
+                <view class="locationbox">
+                    <view class="sjrname">
+                        <view>{{location.sjr}}</view>
+                        <view>{{location.useraddress}}</view>
+                    </view>
+                    <view class="postage">邮费：包邮</view>
+                </view>
+            </view>
+        </van-cell>
         <view wx:for="{{saleattrvaluelist}}">
             <view class="saleattrname">{{item.saleattrname}}</view>
             <view class="button-row">
@@ -74,11 +88,12 @@
         <view style="height:60px"></view>
     </scroll-view>
     <view class="toshop">
-        <van-button class="toshopcartbutton" type="primary" custom-class="toshopbutton" round plain>
+        <van-button class="toshopcartbutton" type="primary" custom-class="toshopbutton" round plain bind:tap="joinshopcart" disabled="{{!nowsku.id}}">
             加入购物车
         </van-button>
-        <van-button class="tobuycartbutton" type="primary" custom-class="toshopbutton" round>
+        <van-button class="tobuycartbutton" type="primary" custom-class="toshopbutton" round bind:tap="joindingdan" disabled="{{!nowsku.id}}">
             立即购买
         </van-button>
     </view>
 </van-popup>
+<van-dialog id="van-dialog" />

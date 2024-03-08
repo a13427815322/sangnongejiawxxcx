@@ -1,0 +1,118 @@
+<!-- pages/shop/shopdetail.wxml -->
+<swiper circular="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{500}}">
+    <block wx:for="{{skudetail}}">
+        <swiper-item>
+            <image class="swiper-image" src="{{item.skuimage}}" bind:tap="tolookimage" data-image='{{item.skuimage}}' />
+        </swiper-item>
+    </block>
+</swiper>
+<image src="../../static/left.png" class="lefticon" style="top:{{navBarHeight-menuHeight}}px" bind:tap="onClickLeft" />
+<view class="skudetail">
+    <view class="spunametitle">{{spudetail.spuname}}</view>
+    <view style="display:flex" class="skupricebox">
+        <view wx:if="{{pricespace.length==1}}" class="skuprice">
+            <text class="money">￥</text>
+            {{pricespace[0]}}
+        </view>
+        <view wx:elif="{{pricespace[0]==pricespace[1]}}" class="skuprice">
+            <text class="money">￥</text>
+            {{pricespace[0]}}
+        </view>
+        <view wx:elif="{{pricespace[1]}}" class="skuprice">
+            <text class="money">￥</text>
+            {{pricespace[0]}} -
+            <text class="money">￥</text>
+            {{pricespace[1]}}
+        </view>
+        <view class="sellcount">已售：{{spudetail.selledcount}}</view>
+    </view>
+    <van-cell is-link use-label-slot>
+        <view slot="label" class="shouhuobox">
+            <image src='../../static/Logistic.png' class="shouhuoicon" />
+            <view class="shouhuoadreess">广东/广州 配送至 {{location.addressspace}}</view>
+        </view>
+    </van-cell>
+    <van-cell is-link bind:tap="taptosku" use-label-slot>
+        <view slot="label" class="shouhuobox">
+            <image src='../../static/Product.png' class="shouhuoicon" />
+            <view class="shouhuoadreess" wx:if="{{selectlength}}">
+                已选：
+                <block wx:for="{{selectedValue}}">{{item}}</block>
+            </view>
+            <view class="shouhuoadreess" wx:else>共{{skudetail.length}}种品类可选择</view>
+        </view>
+    </van-cell>
+    <view class="comdatabox">
+        <view>评论（{{spudetail.comdata.length}}）</view>
+    </view>
+</view>
+<van-popup show="{{ tosku }}" round bind:close="closedetail" closeable position="bottom" custom-style="height: 70%">
+    <scroll-view scroll-y="{{true}}">
+        <view style="display:flex">
+            <image src="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" class="skudetailimg" catchtap="openImage" data-url="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" />
+            <view wx:if="{{skudetailprice}}" class="skuprice">
+                <text class="money">￥</text>
+                {{skudetailprice}}
+            </view>
+            <view wx:elif="{{pricespace.length==1}}" class="skuprice">
+                <text class="money">￥</text>
+                {{pricespace[0]}}
+            </view>
+            <view wx:elif="{{pricespace[0]==pricespace[1]}}" class="skuprice">
+                <text class="money">￥</text>
+                {{pricespace[0]}}
+            </view>
+            <view wx:elif="{{pricespace[1]}}" class="skuprice">
+                <text class="money">￥</text>
+                {{pricespace[0]}} -
+                <text class="money">￥</text>
+                {{pricespace[1]}}
+            </view>
+        </view>
+        <van-cell is-link use-label-slot bind:tap="tochoseadress">
+            <view slot="label" class="checklocation">
+                <view class="locationicon">
+                    <image src="../../static/localtion.png" />
+                </view>
+                <view class="locationbox">
+                    <view class="sjrname">
+                        <view>{{location.sjr}}</view>
+                        <view>{{location.useraddress}}</view>
+                    </view>
+                    <view class="postage">邮费：包邮</view>
+                </view>
+            </view>
+        </van-cell>
+        <view wx:for="{{saleattrvaluelist}}">
+            <view class="saleattrname">{{item.saleattrname}}</view>
+            <view class="button-row">
+                <van-button custom-class="saleattrbutton" wx:for="{{item.saleattrvaluelist}}" wx:for-item="saleattrvalue" bind:tap="handleButtonClick" data-value="{{saleattrvalue}}" data-index="{{item}}" type="{{selectedValue[item.id]==saleattrvalue? 'primary' : 'default'}}">
+                    {{saleattrvalue}}
+                </van-button>
+            </view>
+        </view>
+        <view class="countbox">
+            <view class="skucount">数量</view>
+            <view class="skustepper">
+                <van-stepper value="{{quantity}}" max="{{99}}" bind:change="handleStepperChange" />
+            </view>
+        </view>
+        <view style="height:60px"></view>
+    </scroll-view>
+    <view class="toshop">
+        <van-button class="toshopcartbutton" type="primary" custom-class="toshopbutton" round plain wx:if="{{!istoshop}}" bind:tap="joinshopcart" disabled="{{!nowsku.id}}">
+            加入购物车
+        </van-button>
+        <van-button class="tobuycartbutton" type="primary" custom-class="toshopbutton" round wx:if="{{!isshopcart}}" bind:tap="joindingdan" disabled="{{!nowsku.id}}">
+            立即购买
+        </van-button>
+    </view>
+    <view style="height:50px"></view>
+</van-popup>
+<van-goods-action>
+    <van-goods-action-icon icon="chat-o" text="客服" />
+    <van-goods-action-icon icon="shop-o" text="店铺" />
+    <van-goods-action-button plain color="#24AC6B" text="加入购物车" type="warning" bind:click="toshopcart" />
+    <van-goods-action-button color="#24AC6B" text="立即购买" bind:tap="toshop" />
+</van-goods-action>
+<van-dialog id="van-dialog"></van-dialog>

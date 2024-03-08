@@ -11,7 +11,7 @@
                         <view class="locationicon">
                             <view class="cicletag">{{item.firstname}}</view>
                         </view>
-                        <view class="locationinfo">
+                        <view class="locationinfo" bind:tap="backtoskudetail" data-item="{{item}}">
                             <view class="namebox">
                                 <view class="name">{{item.sjr}}</view>
                                 <view class="phone">{{item.phone}}</view>
