@@ -28,6 +28,8 @@ Page({
     quantity: 1,
     location: {},
     nowsku: {},
+    placeholder: '请输入你感兴趣的商品',
+    nowspuname: ''
   },
 
   /**
@@ -284,7 +286,6 @@ Page({
         break;
       }
     }
-
     // 更新左边选中栏
     if (toViewId !== this.data.toView) {
       this.setData({
@@ -369,7 +370,8 @@ Page({
         this.setData({
           skudetail: res.data,
           tosku: true,
-          pricespace
+          pricespace,
+          nowspuname: e.currentTarget.dataset.spuname,
         })
       },
       fail: (error) => {

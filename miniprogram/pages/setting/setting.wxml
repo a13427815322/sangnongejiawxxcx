@@ -2,7 +2,7 @@
 <van-nav-bar title="设置" bind:click-left="onClickLeft" lable="设置" style="width:100%">
     <van-icon name='arrow-left' slot="left" />
 </van-nav-bar>
-<van-cell is-link use-label-slot>
+<van-cell is-link use-label-slot bind:tap="toedituserinfo">
     <view class="userinformation" bind:tap="toseeting" slot='label'>
         <view class="useratavar">
             <image src="{{userInfo.headSculpture}}" class="atavar" />
@@ -14,4 +14,8 @@
     </view>
 </van-cell>
 <van-cell title="管理收货地址" is-link bind:tap="toloacation" />
-<van-cell title="账号安全" is-link />
+<van-cell title="账号安全" is-link bind:tap="tousersafe" />
+<view class="exitlogin">
+    <van-button size="large" type="danger" bind:tap="exitlogin">退出登录</van-button>
+</view>
+<van-dialog id="van-dialog"></van-dialog>

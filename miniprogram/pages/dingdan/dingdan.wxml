@@ -1,0 +1,66 @@
+<!-- pages/dingdan/dingdan.wxml -->
+<van-nav-bar title="订单" bind:click-left="onClickLeft">
+    <van-icon name='arrow-left' slot="left" />
+</van-nav-bar>
+<view class="tabline">
+    <view class="tabindex {{tabindex=='0'?'activetab':''}}" bind:tap="changetabindex" data-tabindex="0">
+        全部
+    </view>
+    <view class="tabindex {{tabindex=='1'?'activetab':''}}" bind:tap="changetabindex" data-tabindex="1">
+        待付款
+    </view>
+    <view class="tabindex {{tabindex=='2'?'activetab':''}}" bind:tap="changetabindex" data-tabindex="2">
+        待发货
+    </view>
+    <view class="tabindex {{tabindex=='3'?'activetab':''}}" bind:tap="changetabindex" data-tabindex="3">
+        待收货
+    </view>
+    <view class="tabindex {{tabindex=='4'?'activetab':''}}" bind:tap="changetabindex" data-tabindex="4">
+        待评价
+    </view>
+</view>
+<view wx:if="{{dingdanlist.length}}" wx:for="{{dingdanlist}}" class="shopcartcard" wx:for-item="dingdan">
+    <view class="status">
+        {{dingdan.status==1?'待付款':dingdan.status==2?'待发货':dingdan.status==3?'待收货':dingdan.status==4?'待评价':'已完成'}}
+    </view>
+    <view bind:tap="todingdandetail" data-dingdanid="{{dingdan.dingdanid}}" wx:for="{{dingdan.shopcart}}" class="shopcartbox">
+        <view class="skuimage">
+            <image src="{{item.skuimage}}" />
+        </view>
+        <view class="skunamebox">
+            <view class="skuname">{{item.skuname}}</view>
+            <view class="skucount">X{{item.count}}</view>
+        </view>
+        <view class="skuprice">￥{{item.price}}</view>
+    </view>
+    <view class="dingdan-buttonbox">
+        <van-button bind:tap="deldingdan" data-dingdanid="{{dingdan.dingdanid}}" plain round size="small" wx:if="{{dingdan.status==1||dingdan.status==2}}">
+            取消订单
+        </van-button>
+        <van-button bind:tap="topay" data-dingdanid="{{dingdan.dingdanid}}" plain round color="#24AC6B" size="small" wx:if="{{dingdan.status==1}}">
+            去付款
+        </van-button>
+        <van-button plain round color="#24AC6B" size="small" wx:if="{{dingdan.status==2}}">
+            查看订单
+        </van-button>
+        <van-button bind:tap="toshouhuo" data-dingdanid="{{dingdan.dingdanid}}" plain round color="#24AC6B" size="small" wx:if="{{dingdan.status==3}}">
+            确认收货
+        </van-button>
+        <van-button bind:tap="tocomment" data-dingdanid="{{dingdan.dingdanid}}" plain round color="#24AC6B" size="small" wx:if="{{dingdan.status==4}}">
+            去评价
+        </van-button>
+        <van-button bind:tap="deldingdan" data-dingdanid="{{dingdan.dingdanid}}" plain round size="small" wx:if="{{dingdan.status==5}}">
+            删除订单
+        </van-button>
+    </view>
+    <view wx:if="{{dingdan.status==2||dingdan.status==3}}">
+        <van-divider></van-divider>
+        <view class="Logisticbox">
+            <image src="../../static/Logistic.png" />
+            <view wx:if="{{dingdan.status==2}}">你的商品正在等待发货</view>
+            <view wx:if="{{dingdan.status==3}}">你的快递正在等待揽件</view>
+        </view>
+    </view>
+</view>
+<van-empty description="暂无订单" wx:if="{{!dingdanlist.length}}" />
+<van-dialog id="van-dialog"></van-dialog>

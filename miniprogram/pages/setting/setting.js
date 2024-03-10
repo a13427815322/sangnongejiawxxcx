@@ -1,4 +1,5 @@
 // pages/setting/setting.ts
+import Dialog from "@vant/weapp/dialog/dialog";
 Page({
 
   /**
@@ -20,6 +21,37 @@ Page({
   toloacation() {
     wx.navigateTo({
       url: './location',
+    })
+  },
+  exitlogin() {
+    Dialog.confirm({
+      title: '退出登录',
+      message: '确定退出登录吗',
+    })
+      .then(() => {
+        // on confirm
+        wx.clearStorageSync('_id')
+        wx.showToast({
+          title: '退出登录成功',
+          icon: 'none'
+        })
+        wx.navigateBack({
+          delta: 1
+        })
+      })
+      .catch(() => {
+        // on cancel
+
+      });
+  },
+  toedituserinfo() {
+    wx.navigateTo({
+      url: '../edituserinfo/edituserinfo'
+    })
+  },
+  tousersafe() {
+    wx.navigateTo({
+      url: '../usersafe/usersafe'
     })
   },
   /**

@@ -131,7 +131,6 @@ Component({
       if (this.data.communityData) {
         this.setData({
           updatedata: moment(this.data.communityData.creattime).fromNow(),
-          communityDataimg: this.data.communityData.fileurls
         });
       }
     }

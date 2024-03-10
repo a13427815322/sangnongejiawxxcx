@@ -1,2 +1,93 @@
-<!--pages/dingdan/dingdandetail.wxml-->
-<text>pages/dingdan/dingdandetail.wxml</text>
+<!-- pages/dingdan/dingdandetail.wxml -->
+<van-nav-bar title="订单详情" bind:click-left="onClickLeft">
+    <van-icon name='arrow-left' slot="left" />
+</van-nav-bar>
+<view class="location">
+    <van-cell use-label-slot wx:if="{{dingdandetail.status>=2&&dingdandetail.status<4}}">
+        <view slot="label">
+            <view class="checklocation" wx:if="{{dingdandetail.status==3}}">
+                <view class="shouhuo">
+                    <image src="../../static/shouhuo.png" />
+                </view>
+                <view class="locationbox">
+                    <view class="sjrname">
+                        <view>你的快递正在等待揽件</view>
+                    </view>
+                    <view class="postage">{{dingdandetail.cjtime}}</view>
+                </view>
+            </view>
+            <view class="checklocation" wx:if="{{dingdandetail.status==2}}">
+                <view class="shouhuo">
+                    <image src="../../static/shouhuo.png" />
+                </view>
+                <view class="locationbox">
+                    <view class="sjrname">
+                        <view>等待商家发货</view>
+                    </view>
+                    <view class="postage">{{dingdandetail.cjtime}}</view>
+                </view>
+            </view>
+        </view>
+    </van-cell>
+    <van-cell use-label-slot>
+        <view slot="label" class="checklocation">
+            <view class="locationicon">
+                <image src="../../static/localtion.png" />
+            </view>
+            <view class="locationbox">
+                <view class="sjrname">
+                    <view>{{location.sjr}}</view>
+                    <view>{{location.useraddress}}</view>
+                </view>
+                <view class="postage">邮费：包邮</view>
+            </view>
+        </view>
+    </van-cell>
+</view>
+<view class="shopcartbox">
+    <view wx:for="{{dingdandetail.shopcart}}" class="shopcartlist">
+        <image src="{{item.skuimage}}" />
+        <view class="skuname">{{item.skuname}}</view>
+        <view class="pricebox">
+            <view class="price">￥{{item.price}}</view>
+            <view class="count">X {{item.count}}</view>
+        </view>
+    </view>
+    <view class="totalprice">总计：￥{{totalprice}}</view>
+    <view wx:if="{{!islookall}}">
+        <view class="creattimebox" wx:if="{{dingdandetail.cjtime}}">
+            <view>创建时间：</view>
+            <view>{{dingdandetail.cjtime}}</view>
+        </view>
+        <view class="creattimebox" wx:if="{{dingdandetail.fukuantime}}">
+            <view>付款时间：</view>
+            <view>{{dingdandetail.fukuantime}}</view>
+        </view>
+        <view class="creattimebox" wx:if="{{dingdandetail.fahuotime}}">
+            <view>发货时间：</view>
+            <view>{{dingdandetail.fahuotime}}</view>
+        </view>
+    </view>
+    <view class="lookall" bind:tap="tolookall">
+        {{islookall?'查看更多':'收起'}}
+        <van-icon name="{{islookall?'arrow-down':'arrow-up'}}" style="margin-left:5px"></van-icon>
+    </view>
+</view>
+<view class="fixbutton">
+    <van-button plain round wx:if="{{dingdandetail.status==1||dingdandetail.status==2}}" bind:tap="deldingdan">
+        取消订单
+    </van-button>
+    <van-button plain round color="#24AC6B" wx:if="{{dingdandetail.status==1}}" bind:tap="topay">
+        立即付款
+    </van-button>
+    <van-button plain round color="#24AC6B" wx:if="{{dingdandetail.status==3}}" bind:tap="toshouhuo">
+        确认收货
+    </van-button>
+    <van-button plain round color="#24AC6B" wx:if="{{dingdandetail.status==4}}" bind:tap="tocomment">
+        立即评价
+    </van-button>
+    <van-button plain round wx:if="{{dingdandetail.status==5}}" bind:tap="deldingdan">
+        删除订单
+    </van-button>
+</view>
+<van-dialog id="van-dialog"></van-dialog>

@@ -1,60 +1,21 @@
 <!-- pages/shop/shopdetail.wxml -->
-<swiper circular="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{500}}">
-    <block wx:for="{{skudetail}}">
-        <swiper-item>
-            <image class="swiper-image" src="{{item.skuimage}}" bind:tap="tolookimage" data-image='{{item.skuimage}}' />
-        </swiper-item>
-    </block>
-</swiper>
-<image src="../../static/left.png" class="lefticon" style="top:{{navBarHeight-menuHeight}}px" bind:tap="onClickLeft" />
-<view class="skudetail">
-    <view class="spunametitle">{{spudetail.spuname}}</view>
-    <view style="display:flex" class="skupricebox">
-        <view wx:if="{{pricespace.length==1}}" class="skuprice">
-            <text class="money">￥</text>
-            {{pricespace[0]}}
-        </view>
-        <view wx:elif="{{pricespace[0]==pricespace[1]}}" class="skuprice">
-            <text class="money">￥</text>
-            {{pricespace[0]}}
-        </view>
-        <view wx:elif="{{pricespace[1]}}" class="skuprice">
-            <text class="money">￥</text>
-            {{pricespace[0]}} -
-            <text class="money">￥</text>
-            {{pricespace[1]}}
-        </view>
-        <view class="sellcount">已售：{{spudetail.selledcount}}</view>
+<image src="../../static/left.png" class="lefticon" style="top:{{navBarHeight-menuHeight}}px;z-index:1" bind:tap="onClickLeft" />
+<scroll-view scroll-y="{{true}}" class="scroll-view">
+    <swiper circular="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{500}}">
+        <block wx:for="{{skudetail}}">
+            <swiper-item>
+                <image class="swiper-image" src="{{item.skuimage}}" bind:tap="tolookimage" data-image='{{item.skuimage}}' />
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="spudescription">
+        <view class="descriptiontitle">商品详情</view>
+        <view class="descriptiontext">{{spudetail.description}}</view>
     </view>
-    <van-cell is-link use-label-slot>
-        <view slot="label" class="shouhuobox">
-            <image src='../../static/Logistic.png' class="shouhuoicon" />
-            <view class="shouhuoadreess">广东/广州 配送至 {{location.addressspace}}</view>
-        </view>
-    </van-cell>
-    <van-cell is-link bind:tap="taptosku" use-label-slot>
-        <view slot="label" class="shouhuobox">
-            <image src='../../static/Product.png' class="shouhuoicon" />
-            <view class="shouhuoadreess" wx:if="{{selectlength}}">
-                已选：
-                <block wx:for="{{selectedValue}}">{{item}}</block>
-            </view>
-            <view class="shouhuoadreess" wx:else>共{{skudetail.length}}种品类可选择</view>
-        </view>
-    </van-cell>
-    <view class="comdatabox">
-        <view>评论（{{spudetail.comdata.length}}）</view>
-    </view>
-</view>
-<van-popup show="{{ tosku }}" round bind:close="closedetail" closeable position="bottom" custom-style="height: 70%">
-    <scroll-view scroll-y="{{true}}">
-        <view style="display:flex">
-            <image src="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" class="skudetailimg" catchtap="openImage" data-url="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" />
-            <view wx:if="{{skudetailprice}}" class="skuprice">
-                <text class="money">￥</text>
-                {{skudetailprice}}
-            </view>
-            <view wx:elif="{{pricespace.length==1}}" class="skuprice">
+    <view class="skudetail">
+        <view class="spunametitle">{{spudetail.spuname}}</view>
+        <view style="display:flex" class="skupricebox">
+            <view wx:if="{{pricespace.length==1}}" class="skuprice">
                 <text class="money">￥</text>
                 {{pricespace[0]}}
             </view>
@@ -67,6 +28,64 @@
                 {{pricespace[0]}} -
                 <text class="money">￥</text>
                 {{pricespace[1]}}
+            </view>
+            <view class="sellcount">已售：{{spudetail.selledcount}}</view>
+        </view>
+        <van-cell is-link use-label-slot>
+            <view slot="label" class="shouhuobox">
+                <image src='../../static/Logistic.png' class="shouhuoicon" />
+                <view class="shouhuoadreess">广东/广州 配送至 {{location.addressspace}}</view>
+            </view>
+        </van-cell>
+        <van-cell is-link bind:tap="taptosku" use-label-slot>
+            <view slot="label" class="shouhuobox">
+                <image src='../../static/Product.png' class="shouhuoicon" />
+                <view class="shouhuoadreess" wx:if="{{selectlength}}">
+                    已选：
+                    <block wx:for="{{selectedValue}}">{{item}}</block>
+                </view>
+                <view class="shouhuoadreess" wx:else>共{{skudetail.length}}种品类可选择</view>
+            </view>
+        </van-cell>
+        <view class="comdatabox">
+            <view>评论（{{spudetail.comdata.length}}）</view>
+            <view wx:for="{{commentlist}}" class="commentbox">
+                <view class="userinfo">
+                    <image src="{{item.userinfo.headSculpture}}" />
+                    {{item.userinfo.nickname}}
+                </view>
+                <view class="createtime">{{item.createtime}}</view>
+                <view class="comment">{{item.comment}}</view>
+                <van-divider></van-divider>
+            </view>
+        </view>
+    </view>
+    <view style="height:50px"></view>
+</scroll-view>
+<van-popup show="{{ tosku }}" round bind:close="closedetail" closeable position="bottom" custom-style="height: 70%">
+    <scroll-view scroll-y="{{true}}">
+        <view style="display:flex">
+            <image src="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" class="skudetailimg" catchtap="openImage" data-url="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" />
+            <view class="skuname">
+                <view>{{nowsku.id?nowsku.skuname:spudetail.spuname}}</view>
+                <view wx:if="{{skudetailprice}}" class="skuprice">
+                    <text class="money">￥</text>
+                    {{skudetailprice}}
+                </view>
+                <view wx:elif="{{pricespace.length==1}}" class="skuprice">
+                    <text class="money">￥</text>
+                    {{pricespace[0]}}
+                </view>
+                <view wx:elif="{{pricespace[0]==pricespace[1]}}" class="skuprice">
+                    <text class="money">￥</text>
+                    {{pricespace[0]}}
+                </view>
+                <view wx:elif="{{pricespace[1]}}" class="skuprice">
+                    <text class="money">￥</text>
+                    {{pricespace[0]}} -
+                    <text class="money">￥</text>
+                    {{pricespace[1]}}
+                </view>
             </view>
         </view>
         <van-cell is-link use-label-slot bind:tap="tochoseadress">

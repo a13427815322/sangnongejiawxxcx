@@ -1,5 +1,6 @@
 const app = getApp()
 import Dialog from '@vant/weapp/dialog/dialog';
+import moment from 'moment';
 Page({
 
   /**
@@ -24,6 +25,7 @@ Page({
     istoshop: false,
     nowsku: {},
     quantity: 1,
+    commentlist: [],
   },
 
   /**
@@ -80,6 +82,36 @@ Page({
         this.setData({
           spudetail: res.data[0]
         })
+        if (res.data[0].comdata.length) {
+          wx.request({
+            url: 'http://localhost:3002/getcomment',
+            method: 'POST',
+            data: {
+              comdata: JSON.stringify(res.data[0].comdata),
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded',
+            },
+            success: (res) => {
+              res.data.forEach((item) => {
+                item.userinfo = JSON.parse(item.userinfo)
+                item.createtime = moment(item.createtime).format('MM-DD')
+                item.likelist = JSON.parse(item.likelist)
+                if (item.likelist.includes(wx.getStorageSync('_id'))) {
+                  item.islike = true
+                } else {
+                  item.islike = false
+                }
+              })
+              this.setData({
+                commentlist: res.data
+              })
+
+            },
+            fail: (error) => { }
+          })
+
+        }
         console.log(res)
       },
       fail: (error) => {

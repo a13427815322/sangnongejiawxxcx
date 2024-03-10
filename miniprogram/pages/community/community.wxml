@@ -2,7 +2,7 @@
 <van-nav-bar title="互助社区" />
 <view>
   <!-- 使用wx:for遍历helpCommunityList -->
-  <block wx:for="{{helpCommunityList}}" wx:key="index">
+  <block wx:for="{{helpCommunityList}}" wx:key="{{item.id}}">
     <!-- 将每个帖子的数据传递给CommunityCard组件 -->
     <CommuityCard communityData="{{item}}" bind:comment="tocomment" bind:upvote="upvotecommunity" />
   </block>

@@ -8,12 +8,26 @@ swiper {
     height: 240px;
 }
 
+.scroll-view {
+    height: 100vh;
+}
+
 .lefticon {
     position: fixed;
     width: 8px;
     height: 10px;
     left: 16px;
     top: 0
+}
+
+.skuname {
+    margin-top: 16px;
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 
 .skuprice {
@@ -25,9 +39,10 @@ swiper {
     text-align: left;
     color: #24AC6B;
     display: flex;
-    justify-content: start;
+    justify-content: left;
     align-items: center;
 }
+
 
 .navbar {
     position: fixed;
@@ -149,11 +164,10 @@ swiper {
 }
 
 .skudetail {
-    overflow: hidden;
     margin-top: 10px;
     border-radius: 10px;
     background-color: #fff;
-    height: calc(100vh - 250px)
+    padding: 16px 0;
 }
 
 .saleattrname {
@@ -308,4 +322,75 @@ swiper {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.userinfo image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+    font-family: PingFang SC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0px;
+    color: #333;
+}
+
+.userinfo {
+    align-items: center;
+    display: flex;
+}
+
+.commentbox {
+    margin: 16px;
+}
+
+.comment {
+    margin-top: 5px;
+    font-family: PingFang SC;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin-left: 30px;
+
+}
+
+.createtime {
+    margin-top: 5px;
+    margin-left: 30px;
+    font-family: PingFang SC;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+.spudescription {
+    margin: 16px 0;
+    padding: 16px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.descriptiontitle {
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: left;
+    color: #333;
+}
+
+.descriptiontext {
+    margin-top: 10px;
+    font-family: PingFang SC;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0px;
+    text-align: left;
 }

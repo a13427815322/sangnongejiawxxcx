@@ -1,7 +1,8 @@
 <!-- pages/shopcart/shopcart.wxml -->
-<van-nav-bar></van-nav-bar>
+<van-nav-bar title="购物车"></van-nav-bar>
 <view>
-    <van-checkbox-group value="{{ result }}" bind:change="oncheckshop">
+    <view class="skuname" style="margin:16px 16px 0px 16px">购物车（{{shopcart.length}}）</view>
+    <van-checkbox-group wx:if="{{shopcart.length}}" value="{{ result }}" bind:change="oncheckshop">
         <block wx:for="{{shopcart}}">
             <van-swipe-cell right-width="{{ 65 }}">
                 <van-checkbox name="{{item.id}}" custom-class="shopcartcheck">
@@ -30,6 +31,7 @@
             </van-swipe-cell>
         </block>
     </van-checkbox-group>
+    <van-empty wx:if="{{!shopcart.length}}" image="http://localhost:3002/uploads/emptyshopcart.png" description="购物车空空如也"></van-empty>
 </view>
 <view style="height:50px"></view>
 <van-submit-bar price="{{ totalprice }}" button-text="去结算" bind:submit="tocreatedingdan" button-type="primary" disabled="{{!result.length}}">

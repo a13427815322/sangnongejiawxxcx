@@ -1,0 +1,17 @@
+<van-nav-bar title="{{newsdetail.title}}" bind:click-left="onClickLeft" class="nav-bar">
+    <van-icon name='arrow-left' slot="left" />
+</van-nav-bar>
+<scroll-view scroll-y="{{true}}" class="content-scroll">
+    <view class="detail-container">
+        <image class="header-img" src="{{newsdetail.img_url}}" mode="aspectFill"></image>
+        <view class="article-info">
+            <text class="source">{{newsdetail.source}}</text>
+            <text class="datetime">{{newsdetail.datetime}}</text>
+            <!-- <text class="comment-count">{{newsdetail.comment_count}}</text> -->
+        </view>
+        <view class="title">{{newsdetail.title}}</view>
+        <block wx:for="{{newsdetail.content}}">
+            <view class="paragraph">{{item}}</view>
+        </block>
+    </view>
+</scroll-view>

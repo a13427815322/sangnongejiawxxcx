@@ -23,7 +23,7 @@
                     </view>
                     <view class="shopcartandbuy">
                         <view class="shopcartbox">
-                            <van-button size="mini" round color="#24AC6B" bind:tap="choseshop" data-id="{{item.id}}">
+                            <van-button size="mini" round color="#24AC6B" bind:tap="choseshop" data-spuname="{{item.spuname}}" data-id="{{item.id}}">
                                 选择规格
                             </van-button>
                         </view>
@@ -38,23 +38,26 @@
     <scroll-view scroll-y="{{true}}">
         <view style="display:flex">
             <image src="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" class="skudetailimg" catchtap="openImage" data-url="{{skudetailimg?skudetailimg:skudetail[0].skuimage}}" />
-            <view wx:if="{{skudetailprice}}" class="skuprice">
-                <text class="money">￥</text>
-                {{skudetailprice}}
-            </view>
-            <view wx:elif="{{pricespace.length==1}}" class="skuprice">
-                <text class="money">￥</text>
-                {{pricespace[0]}}
-            </view>
-            <view wx:elif="{{pricespace[0]==pricespace[1]}}" class="skuprice">
-                <text class="money">￥</text>
-                {{pricespace[0]}}
-            </view>
-            <view wx:elif="{{pricespace[1]}}" class="skuprice">
-                <text class="money">￥</text>
-                {{pricespace[0]}} -
-                <text class="money">￥</text>
-                {{pricespace[1]}}
+            <view class="skuname">
+                <view>{{nowsku.id?nowsku.skuname:nowspuname}}</view>
+                <view wx:if="{{skudetailprice}}" class="skuprice">
+                    <text class="money">￥</text>
+                    {{skudetailprice}}
+                </view>
+                <view wx:elif="{{pricespace.length==1}}" class="skuprice">
+                    <text class="money">￥</text>
+                    {{pricespace[0]}}
+                </view>
+                <view wx:elif="{{pricespace[0]==pricespace[1]}}" class="skuprice">
+                    <text class="money">￥</text>
+                    {{pricespace[0]}}
+                </view>
+                <view wx:elif="{{pricespace[1]}}" class="skuprice">
+                    <text class="money">￥</text>
+                    {{pricespace[0]}} -
+                    <text class="money">￥</text>
+                    {{pricespace[1]}}
+                </view>
             </view>
         </view>
         <van-cell is-link use-label-slot bind:tap="tochoseadress">

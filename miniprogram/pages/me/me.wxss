@@ -89,3 +89,80 @@
     text-align: center;
 
 }
+
+.mydingdan {
+    background-color: #fff;
+    margin: 30px 10px 10px 10px;
+    padding: 16px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 4px 4px 4px 0px #0000000D;
+}
+
+.mydingdantitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.paybox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #333;
+    position: relative;
+}
+
+.payiconbox {
+    padding: 16px 0;
+    flex: 1;
+}
+
+.payiconbox image {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 5px;
+}
+
+.mydingdantext {
+    font-family: PingFang SC;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #333;
+
+}
+
+.lookall {
+    font-family: PingFang SC;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #333;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+.status {
+    position: absolute;
+    top: 0;
+    right: calc(50% - 24px);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    z-index: 9;
+    text-align: center;
+}

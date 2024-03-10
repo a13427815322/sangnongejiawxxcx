@@ -12,6 +12,10 @@ Page({
     menuHeight: app.globalData.menuHeight,
     userInfo: {},
     isuserinfo: false,
+    status1: 0,
+    status2: 0,
+    status3: 0,
+    status4: 0
   },
 
   /**
@@ -97,9 +101,47 @@ Page({
           });
         },
       });
+      wx.request({
+        url: 'http://localhost:3002/getdingdancount',
+        method: 'POST',
+        data: {
+          _id: _id,
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        success: (res) => {
+          console.log(res.data);
+          this.setData({
+            status1: res.data.status1,
+            status2: res.data.status2,
+            status3: res.data.status3,
+            status4: res.data.status4
+          })
+        },
+        fail: (error) => {
+          console.error('获取用户信息请求失败：', error);
+          // 请求失败时，显示错误信息
+          wx.showToast({
+            title: '获取用户信息失败，请重试',
+            icon: 'none',
+            duration: 2000,
+          });
+        },
+      });
     } else {
+      wx.hideTabBarRedDot({
+        index: 3,
+      });
+      wx.removeTabBarBadge({
+        index: 3,
+      });
       this.setData({
         isuserinfo: false,
+        status1: 0,
+        status2: 0,
+        status3: 0,
+        status4: 0,
       });
     }
   },
@@ -109,6 +151,22 @@ Page({
    */
   onHide() {
 
+  },
+  todingdan(e) {
+    const _id = wx.getStorageSync('_id')
+    if (_id) {
+      wx.navigateTo({
+        url: '../dingdan/dingdan?status=' + e.currentTarget.dataset.status
+      })
+    } else {
+      wx.navigateTo({
+        url: '../login/login'
+      })
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none'
+      })
+    }
   },
 
   /**

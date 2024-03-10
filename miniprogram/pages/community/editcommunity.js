@@ -96,9 +96,9 @@ Page({
             duration: 2000,
             success: () => {
               // 保存成功后跳转到其他页面或进行其他操作
-              wx.navigateBack({
-                delta: 1,
-              });
+              wx.switchTab({
+                url: '../community/community'
+              })
             },
           });
         }

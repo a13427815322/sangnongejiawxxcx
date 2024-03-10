@@ -200,6 +200,12 @@ Page({
       shopcartlist[i] = parseInt(shopcartlist[i])
     }
     shopcartlist = JSON.stringify(shopcartlist)
+
+    this.setData({
+      totalprice: 0,
+      allchecked: false,
+      result: []
+    })
     wx.navigateTo({
       url: '../dingdan/creatdingdan?shopcartlist=' + [shopcartlist]
     })

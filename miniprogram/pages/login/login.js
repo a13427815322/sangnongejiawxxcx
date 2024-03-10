@@ -140,7 +140,6 @@ Page({
   },
 
   // 点击登录按钮
-  // 点击登录按钮
   onLogin() {
     // 验证逻辑
     let valid = true; // 用于标记是否通过验证
@@ -176,7 +175,6 @@ Page({
         loginPasswordError: ''
       });
     }
-
     // 如果通过了所有验证
     if (valid) {
       const { account, password } = this.data;

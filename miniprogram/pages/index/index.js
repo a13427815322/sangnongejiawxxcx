@@ -44,5 +44,10 @@ Page({
         that.setData({ newsdetail: res.data })
       }
     })
-  }
+  },
+  tonews(id) {
+    wx.navigateTo({
+      url: '../newdetail/newdetail?id=' + id.detail
+    })
+  },
 })

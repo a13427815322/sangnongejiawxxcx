@@ -1,0 +1,44 @@
+/* pages/comment/comment.wxss */
+.commentbox {
+    display: flex;
+    margin: 16px;
+    background-color: #fff;
+    border-radius: 10px;
+
+}
+
+.commentbox image {
+    width: 68px;
+    height: 68px;
+}
+
+.skuimage {
+    flex: 1;
+    padding: 10px;
+}
+
+.skuname {
+    flex: 4;
+    padding: 10px;
+    font-family: PingFang SC;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0px;
+
+}
+
+.commentbutton {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.commentfile .van-field__body--textarea {
+    padding: 5px 10px;
+    flex: 1;
+    border: 1px solid #f5f5f5;
+    border-radius: 10px;
+}

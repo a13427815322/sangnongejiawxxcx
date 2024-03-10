@@ -1,5 +1,5 @@
 <!-- commpents/GridView.wxml -->
-<block wx:for="{{images}}" wx:key="image">
+<block wx:for="{{images}}" wx:key="{{item.url}}">
   <block wx:if="{{images.length==1}}">
     <image src="{{item.url}}" style="{{imageSize.direction(size,windowWidth)}}" bindload="loadImage" mode="aspectFit" catchtap="openImage"></image>
   </block>

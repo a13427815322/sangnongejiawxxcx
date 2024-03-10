@@ -1,17 +1,22 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/newdetail/newdetail",
     "pages/community/community",
     "pages/communitydetail/communitydetail",
     "pages/shop/shop",
     "pages/shop/shopdetail",
     "pages/shopcart/shopcart",
     "pages/me/me",
+    "pages/edituserinfo/edituserinfo",
+    "pages/usersafe/usersafe",
     "pages/community/editcommunity",
     "pages/login/login",
     "pages/setting/setting",
     "pages/setting/location",
     "pages/setting/locationEdit",
+    "pages/dingdan/dingdan",
+    "pages/comment/comment",
     "pages/dingdan/creatdingdan",
     "pages/dingdan/dingdandetail"
   ],

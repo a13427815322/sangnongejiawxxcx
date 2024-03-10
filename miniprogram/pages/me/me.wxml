@@ -27,3 +27,66 @@
         </view>
     </view>
 </view>
+<view class="mydingdan">
+    <view class="mydingdantitle">
+        <view class="mydingdantext">我的订单</view>
+        <view class="lookall" bind:tap="todingdan" data-status="0">
+            全部
+            <van-icon name="arrow"></van-icon>
+        </view>
+    </view>
+    <view class="paybox">
+        <view class="payiconbox" bind:tap="todingdan" data-status="1">
+            <view class="paybox">
+                <view class="status" wx:if="{{status1}}">{{status1}}</view>
+                <image src="../../static/pay.png" />
+            </view>
+            <view class="paybox">待付款</view>
+        </view>
+        <view class="payiconbox" bind:tap="todingdan" data-status="2">
+            <view class="paybox">
+                <view class="status" wx:if="{{status2}}">{{status2}}</view>
+                <image src="../../static/fahuo.png" />
+            </view>
+            <view class="paybox">待发货</view>
+        </view>
+        <view class="payiconbox" bind:tap="todingdan" data-status="3">
+            <view class="paybox">
+                <view class="status" wx:if="{{status3}}">{{status3}}</view>
+                <image src="../../static/shouhuo.png" />
+            </view>
+            <view class="paybox">待收货</view>
+        </view>
+        <view class="payiconbox" bind:tap="todingdan" data-status="4">
+            <view class="paybox">
+                <view class="status" wx:if="{{status4}}">{{status4}}</view>
+                <image src="../../static/pingjia.png" />
+            </view>
+            <view class="paybox">待评价</view>
+        </view>
+    </view>
+</view>
+<van-cell use-label-slot>
+    <view slot="label">
+        <van-icon name="question-o" class="icon" />
+        我的问答
+    </view>
+</van-cell>
+<van-cell use-label-slot>
+    <view slot="label">
+        <van-icon name="label-o" class="icon" />
+        帮助手册
+    </view>
+</van-cell>
+<van-cell use-label-slot>
+    <view slot="label">
+        <van-icon name="service-o" class="icon" />
+        联系客服
+    </view>
+</van-cell>
+<van-cell use-label-slot>
+    <view slot="label">
+        <van-icon name="warning-o" class="icon" />
+        关于我们
+    </view>
+</van-cell>

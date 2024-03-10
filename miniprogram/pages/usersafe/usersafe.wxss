@@ -1,0 +1,14 @@
+/* pages/usersafe/usersafe.wxss */
+.deluser {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.commentbutton {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

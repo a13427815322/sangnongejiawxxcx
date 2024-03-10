@@ -10,7 +10,7 @@
     </view>
     <view class="commuityconent" bind:tap="tocomment">{{communityData.title}}</view>
     <view class="image-box">
-        <grid-view images="{{communityDataimg}}" mode='center'></grid-view>
+        <grid-view images="{{communityData.fileurls}}" mode='center'></grid-view>
     </view>
     <view style="clear:both"></view>
     <view class="informationbar">
