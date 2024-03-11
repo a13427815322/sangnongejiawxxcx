@@ -1,7 +1,6 @@
 // pages/dingdan/creatdingdan.ts
-import Dialog from '@vant/weapp/dialog/dialog';
+import Dialog from "@vant/weapp/dialog/dialog";
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -9,176 +8,167 @@ Page({
     location: {},
     shopcartlist: [],
     totalprice: 0,
-    list: []
+    list: [],
   },
   tochoseadress() {
     wx.navigateTo({
-      url: '../setting/location?isskudetail=true'
-    })
+      url: "../setting/location?isskudetail=true",
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const _id = wx.getStorageSync('_id')
+    const _id = wx.getStorageSync("_id");
     wx.request({
-      url: 'http://localhost:3002/getadress',
-      method: 'POST',
+      url: "http://localhost:3002/getadress",
+      method: "POST",
       data: { _id },
       header: {
-        'content-type': 'application/x-www-form-urlencoded',
+        "content-type": "application/x-www-form-urlencoded",
       },
       success: (res) => {
-        console.log(res)
+        console.log(res);
         this.setData({
-          location: res.data[0]
-        }
-        )
-
+          location: res.data[0],
+        });
       },
-      fail: (error) => {
-
-      },
+      fail: (error) => {},
     });
     if (options.shopcartlist) {
-      const { shopcartlist } = options
+      const { shopcartlist } = options;
 
       wx.request({
-        url: 'http://localhost:3002/getshopcartdingdan',
-        method: 'POST',
+        url: "http://localhost:3002/getshopcartdingdan",
+        method: "POST",
         data: { shopcartlist: shopcartlist },
         header: {
-          'content-type': 'application/x-www-form-urlencoded',
+          "content-type": "application/x-www-form-urlencoded",
         },
         success: (res) => {
-          console.log(res)
-          let totalprice = 0
-          res.data.forEach(element => {
-            element.skusaleattrvalueList = JSON.parse(element.skusaleattrvalueList)
-            totalprice = totalprice + element.count * element.price
+          console.log(res);
+          let totalprice = 0;
+          res.data.forEach((element) => {
+            element.skusaleattrvalueList = JSON.parse(element.skusaleattrvalueList);
+            totalprice = totalprice + element.count * element.price;
           });
           this.setData({
             shopcartlist: res.data,
             totalprice: totalprice,
-            list: options.shopcartlist
-          })
+            list: options.shopcartlist,
+          });
         },
-        fail: (error) => {
-
-        },
+        fail: (error) => {},
       });
     }
-
   },
   onClickLeft() {
     wx.navigateBack({
-      delta: 1
-    })
+      delta: 1,
+    });
   },
   tocreatedingdan() {
-    const _id = wx.getStorageSync('_id')
-    const { list, shopcartlist, location } = this.data
-    Dialog.confirm({
-      title: '付款',
-      message: '请进行付款',
-    })
-      .then(() => {
-        // on confirm
-        wx.request({
-          url: 'http://localhost:3002/createpaydingdan',
-          method: 'POST',
-          data: { _id, list, shopcartlist: JSON.stringify(shopcartlist), adress: JSON.stringify(location) },
-          header: {
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-          success: (res) => {
-            wx.navigateTo({
-              url: './dingdandetail?dingdanid=' + res.data.insertId
-            })
-            wx.showToast({
-              title: res.data.message,
-              icon: 'success'
-            })
-
-          },
-          fail: (error) => {
-
-          },
-        });
+    const _id = wx.getStorageSync("_id");
+    const { list, shopcartlist, location } = this.data;
+    if (location.phone) {
+      Dialog.confirm({
+        title: "付款",
+        message: "请进行付款",
       })
-      .catch(() => {
-        wx.request({
-          url: 'http://localhost:3002/createwantpaydingdan',
-          method: 'POST',
-          data: { _id, list, shopcartlist: JSON.stringify(shopcartlist), adress: JSON.stringify(location) },
-          header: {
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-          success: (res) => {
-            wx.navigateTo({
-              url: './dingdandetail?dingdanid=' + res.data.insertId
-            })
-            wx.showToast({
-              title: res.data.message,
-              icon: 'none'
-            })
-
-          },
-          fail: (error) => {
-
-          },
+        .then(() => {
+          // on confirm
+          wx.request({
+            url: "http://localhost:3002/createpaydingdan",
+            method: "POST",
+            data: {
+              _id,
+              list,
+              shopcartlist: JSON.stringify(shopcartlist),
+              adress: JSON.stringify(location),
+            },
+            header: {
+              "content-type": "application/x-www-form-urlencoded",
+            },
+            success: (res) => {
+              wx.navigateTo({
+                url: "./dingdandetail?dingdanid=" + res.data.insertId,
+              });
+              wx.showToast({
+                title: res.data.message,
+                icon: "success",
+              });
+            },
+            fail: (error) => {},
+          });
+        })
+        .catch(() => {
+          wx.request({
+            url: "http://localhost:3002/createwantpaydingdan",
+            method: "POST",
+            data: {
+              _id,
+              list,
+              shopcartlist: JSON.stringify(shopcartlist),
+              adress: JSON.stringify(location),
+            },
+            header: {
+              "content-type": "application/x-www-form-urlencoded",
+            },
+            success: (res) => {
+              wx.navigateTo({
+                url: "./dingdandetail?dingdanid=" + res.data.insertId,
+              });
+              wx.showToast({
+                title: res.data.message,
+                icon: "none",
+              });
+            },
+            fail: (error) => {},
+          });
+          // on cancel
         });
-        // on cancel
-
+    } else {
+      wx.navigateTo({
+        url: "../setting/location?isskudetail=true",
       });
-
+      wx.showToast({
+        title: "请先选择地址",
+        icon: "none",
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {},
+});
